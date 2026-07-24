@@ -765,15 +765,27 @@
     reversalRate: [2.2, 6.2], pressure: [0.22, 1.0], powder: [40, 60],
   };
 
+  // Ideal matcha powder amount now depends on which drink was drawn, instead
+  // of one randomized range applied to every drink equally. The center/width
+  // roughly reflects how that drink is actually made — thin usucha-style tea
+  // wants less powder, drinks meant to cut through milk/coconut or stand up
+  // against coffee want more, fruit-forward ones sit in between.
+  const DRINK_POWDER_IDEAL = {
+    '極上薄茶':   [22, 38],  // usucha — traditionally a lighter, thin brew
+    '雲朵拿鐵':   [48, 66],  // needs enough matcha to come through the milk
+    '玄琥之啡':   [52, 70],  // has to hold its own against the coffee
+    '青檸沁抹茶': [34, 52],  // lime wants balance, not an overpowering matcha hit
+    '椰風抹茶':   [46, 64],  // coconut richness needs a firmer matcha backbone
+    '柚見翠波':   [30, 48],  // yuzu is delicate — too much matcha buries it
+  };
+
   function randomizeIdeals(){
-    const timeCenter = rand(22000, 32000);
-    IDEAL.timeMs = [timeCenter-8000, timeCenter+8000];
+    const timeCenter = rand(28000, 38000);
+    IDEAL.timeMs = [timeCenter-9000, timeCenter+9000];
     const speedCenter = rand(700, 1000);
     IDEAL.speed = [speedCenter-470, speedCenter+470];
     const techCenter = rand(3.2, 5.2);
     IDEAL.reversalRate = [techCenter-2, techCenter+2];
-    const powderCenter = rand(35, 65);
-    IDEAL.powder = [powderCenter-15, powderCenter+15];
   }
 
   const DRINKS = [
@@ -985,6 +997,7 @@
     pourCtx = pourCanvas.getContext('2d');
     pourAmount = 0;
     pourParticles = [];
+    IDEAL.powder = DRINK_POWDER_IDEAL[state.drink] || [40, 60];
     document.getElementById('confirmPourBtn').disabled = true;
     document.getElementById('pourReadout').textContent = '點擊茶罐添加茶粉';
     const scoopBtn = document.getElementById('scoopBtn');
@@ -1065,7 +1078,7 @@
   let wCanvas, wCtx, wCX, wCY, wBowlR=210, wRimTol=34;
   let wState='idle', wPressing=false, wLast=null, wActiveMs=0, wSpeedSamples=[];
   let wLastVel=null, wReversalCount=0, wRecentReversalTimes=[], wReversalPoints=[];
-  let wSplashCount=0, wFoam=0, wFoamFine=0, wFineStreak=0, wFoamPatches=[], wSplashMarks=[], wCoverageSectors=null;
+  let wSplashCount=0, wSplashSeverity=0, wFoam=0, wFoamFine=0, wFineStreak=0, wFoamPatches=[], wSplashMarks=[], wCoverageSectors=null;
   let wPressureSamples=[], wCurrentSpeedVisual=0, wWhiskAngleVisual=0, wRafId=null;
 
   function initWhiskStage(){
@@ -1086,7 +1099,7 @@
 
   function resetWhiskStage(){
     wPressing=false; wLast=null; wActiveMs=0; wSpeedSamples=[]; wLastVel=null;
-    wReversalCount=0; wRecentReversalTimes=[]; wSplashCount=0; wFoam=0; wFoamFine=0; wFineStreak=0;
+    wReversalCount=0; wRecentReversalTimes=[]; wSplashCount=0; wSplashSeverity=0; wFoam=0; wFoamFine=0; wFineStreak=0;
     wFoamPatches=[]; wPressureSamples=[]; wSplashMarks=[]; wReversalPoints=[];
     wCoverageSectors = new Array(10).fill(0);
     wCurrentSpeedVisual=0; wWhiskAngleVisual=0; wState='idle';
@@ -1151,6 +1164,11 @@
     const r = Math.hypot(p.x-wCX, p.y-wCY);
     if(r > wBowlR+wRimTol){
       wSplashCount++;
+      // How far past the rim the whisk actually went, not just whether it
+      // crossed the line at all — a splash that barely tips over the edge
+      // shouldn't cost as much as one flung well clear of the bowl.
+      const overshoot = r - (wBowlR+wRimTol);
+      wSplashSeverity += Math.min(1, overshoot/(wBowlR*0.4));
       if(Math.random()<0.6 && wSplashMarks.length<140){
         const dropCount = 1 + Math.floor(Math.random()*2);
         for(let i=0;i<dropCount;i++){
@@ -1292,11 +1310,29 @@
     // Splash penalty as exponential decay instead of a hard linear -5/splash
     // capped at 15: the first couple of splashes now cost more (harsher for
     // sloppy control) while it still can't hit a hard floor as fast.
-    const controlScore = Math.round(Math.max(8, 100*Math.pow(0.90, wSplashCount)));
     const pressureScore = peakedCurve(avgPressure, IDEAL.pressure);
-    const foamScore = Math.round(Math.max(0, Math.min(100, wFoam*0.5 + wFoamFine*0.5)));
+    // Control used to be splash-count only, which meant a single quick swirl
+    // with zero splashes scored a perfect 100 — technically no mess, but not
+    // actually demonstrating any control since there was barely any whisking
+    // to lose control OF. Now it's scaled down for insufficient duration (a
+    // few hundred ms of contact can't earn full marks no matter how clean),
+    // and blends in a small amount of the pressure score too.
+    const minControlEffortMs = 5000;
+    const controlDurationFactor = Math.max(0, Math.min(1, wActiveMs/minControlEffortMs));
+    const splashControlScore = 100*Math.pow(0.90, wSplashSeverity);
+    const controlScore = Math.round(Math.max(8, (splashControlScore*0.8 + pressureScore*0.2) * (0.35 + controlDurationFactor*0.65)));
+    // Raw foam "amount" can climb to near-100 within just a few seconds of
+    // decent technique — it was possible to rack up a high foam score (and
+    // therefore a high overall score) from a genuinely brief whisk. Gate the
+    // foam score by elapsed time too, on a longer ramp than control's (foam
+    // body/fineness legitimately needs sustained whisking, not just a quick
+    // burst), so a short "刷一下下" attempt can't fake good foam.
+    const minFoamEffortMs = 12000;
+    const foamDurationFactor = Math.max(0, Math.min(1, wActiveMs/minFoamEffortMs));
+    const foamScoreRaw = Math.max(0, Math.min(100, wFoam*0.5 + wFoamFine*0.5));
+    const foamScore = Math.round(foamScoreRaw * (0.25 + foamDurationFactor*0.75));
     const patternScore = wPatternScore(wReversalPoints, wBowlR);
-    const rawOverall = timeScore*0.05 + speedScore*0.12 + techniqueScore*0.20 + consistencyScore*0.13 + controlScore*0.13 + pressureScore*0.05 + foamScore*0.17 + patternScore*0.15;
+    const rawOverall = timeScore*0.09 + speedScore*0.11 + techniqueScore*0.19 + consistencyScore*0.12 + controlScore*0.12 + pressureScore*0.05 + foamScore*0.17 + patternScore*0.15;
     const overall = rawOverall>=65 ? Math.round(rawOverall) : Math.round(65*Math.pow(Math.max(0,rawOverall)/65, 0.7));
     state.whiskOverall = overall;
     state.whiskScore = Math.round(overall/100 * MAX.whisk);
@@ -1602,13 +1638,9 @@
           const bottom = Math.min(h-1, Math.ceil((bottomS+1)/scale) + 2);
           const cropH = bottom - top + 1;
 
-          const full = document.createElement('canvas');
-          full.width = w; full.height = h;
-          full.getContext('2d').drawImage(img, 0, 0);
-
           const out = document.createElement('canvas');
           out.width = w; out.height = Math.max(1, cropH);
-          out.getContext('2d').drawImage(full, 0, top, w, cropH, 0, 0, w, cropH);
+          out.getContext('2d').drawImage(img, 0, top, w, cropH, 0, 0, w, cropH);
           resolve(out.toDataURL('image/png'));
         } catch(e){ console.warn('Whitespace trim skipped (falling back to untrimmed image):', e); resolve(dataUrl); }
       };
@@ -1626,7 +1658,7 @@
     else if(total>=88){ verdictZh='抹茶大師'; verdictEn='Matcha Master'; }
     else if(total>=80){ verdictZh='點茶名匠'; verdictEn='Whisk Virtuoso'; }
     else if(total>=72){ verdictZh='茶道達人'; verdictEn='Tea Whisperer'; }
-    else if(total>=64){ verdictZh='靈巧見習'; verdictEn='Steady Hands'; }
+    else if(total>=64){ verdictZh='靈巧見習生'; verdictEn='Steady Hands'; }
     else if(total>=56){ verdictZh='修煉生'; verdictEn='Rising Apprentice'; }
     else if(total>=48){ verdictZh='半吊子茶人'; verdictEn='Half-Baked Brewer'; }
     else if(total>=38){ verdictZh='手忙腳亂の新手'; verdictEn='Sprinkle & Splash Beginner'; }
