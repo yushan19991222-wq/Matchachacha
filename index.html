@@ -612,7 +612,7 @@
 <!-- Stage 4: Results -->
 <section class="stage" id="stage-results">
 <div class="premium-scroll w-full mb-12 mt-4" id="masteryCard"><div class="dotted-border-strip"></div><div class="premium-scroll-content"><div class="flex flex-col items-center mb-6"><div class="relative flex items-center justify-center w-24 h-24"><svg class="absolute inset-0" height="96" viewBox="0 0 96 96" width="96"><circle cx="48" cy="48" fill="none" r="46" stroke="#C5A059" stroke-opacity="0.2" stroke-width="4"></circle><circle cx="48" cy="48" fill="none" r="41" stroke="#C5A059" stroke-opacity="0.4" stroke-width="1"></circle></svg><span class="text-4xl font-bold text-gold-leaf font-mono" id="totalNum">80</span><div class="absolute -bottom-2 bg-gold-leaf text-white text-[10px] px-2 py-0.5 tracking-widest uppercase font-bold" style="border-radius:20px;">Score</div></div></div><div class="flex flex-col items-center">
-<div class="text-headline-md text-matcha-deep font-bold mincho mb-0" id="certRankTitle"><div class="relative px-8 py-3 border-y border-gold-leaf/30 bg-gradient-to-r from-transparent via-gold-leaf/5 to-transparent text-center my-2">
+<div class="text-headline-md text-matcha-deep font-bold mincho mb-0" id="certRankTitle"><div class="relative px-4 sm:px-8 py-3 border-y border-gold-leaf/30 bg-gradient-to-r from-transparent via-gold-leaf/5 to-transparent text-center my-2">
 <div class="absolute left-0 top-0 w-2 h-2 border-l border-t border-gold-leaf"></div>
 <div class="absolute right-0 top-0 w-2 h-2 border-r border-t border-gold-leaf"></div>
 <div class="absolute left-0 bottom-0 w-2 h-2 border-l border-b border-gold-leaf"></div>
@@ -1562,29 +1562,53 @@
       img.onload = () => {
         try {
           const w = img.naturalWidth, h = img.naturalHeight;
-          const canvas = document.createElement('canvas');
-          canvas.width = w; canvas.height = h;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0);
-          const data = ctx.getImageData(0, 0, w, h).data;
+
+          // Scan a downscaled copy rather than the full-resolution image.
+          // getImageData on a full-size (pixelRatio up to 3x) canvas can be
+          // slow or silently fail on some mobile browsers' memory limits —
+          // when it does, the catch below just returns the untrimmed image,
+          // which is exactly the "still has a white edge on mobile, fine on
+          // desktop" symptom. Scanning a small ~600px-tall copy is cheap and
+          // reliable everywhere; we just scale the found boundary back up to
+          // full-res coordinates before cropping the real image.
+          const scale = Math.min(1, 600 / h);
+          const sw = Math.max(1, Math.round(w*scale)), sh = Math.max(1, Math.round(h*scale));
+          const scanCanvas = document.createElement('canvas');
+          scanCanvas.width = sw; scanCanvas.height = sh;
+          const scanCtx = scanCanvas.getContext('2d', { willReadFrequently: true });
+          scanCtx.drawImage(img, 0, 0, sw, sh);
+          const data = scanCtx.getImageData(0, 0, sw, sh).data;
+
           const isRowBlank = (y) => {
-            const rowStart = y*w*4;
-            for(let x=0; x<w; x++){
+            const rowStart = y*sw*4;
+            for(let x=0; x<sw; x++){
               const idx = rowStart + x*4;
               const a = data[idx+3];
               if(a > 10 && (data[idx] < 240 || data[idx+1] < 240 || data[idx+2] < 240)) return false;
             }
             return true;
           };
-          let top = 0;
-          while(top < h && isRowBlank(top)) top++;
-          let bottom = h - 1;
-          while(bottom > top && isRowBlank(bottom)) bottom--;
+          let topS = 0;
+          while(topS < sh && isRowBlank(topS)) topS++;
+          let bottomS = sh - 1;
+          while(bottomS > topS && isRowBlank(bottomS)) bottomS--;
+
+          if(topS===0 && bottomS>=sh-1){ resolve(dataUrl); return; }
+
+          // Scale the boundary back up to full-resolution pixel coordinates,
+          // with a tiny cushion so a soft/anti-aliased edge in the downscaled
+          // scan can never eat into real content at full resolution.
+          const top = Math.max(0, Math.floor(topS/scale) - 2);
+          const bottom = Math.min(h-1, Math.ceil((bottomS+1)/scale) + 2);
           const cropH = bottom - top + 1;
-          if(top===0 && cropH>=h-1){ resolve(dataUrl); return; }
+
+          const full = document.createElement('canvas');
+          full.width = w; full.height = h;
+          full.getContext('2d').drawImage(img, 0, 0);
+
           const out = document.createElement('canvas');
           out.width = w; out.height = Math.max(1, cropH);
-          out.getContext('2d').drawImage(canvas, 0, top, w, cropH, 0, 0, w, cropH);
+          out.getContext('2d').drawImage(full, 0, top, w, cropH, 0, 0, w, cropH);
           resolve(out.toDataURL('image/png'));
         } catch(e){ console.warn('Whitespace trim skipped (falling back to untrimmed image):', e); resolve(dataUrl); }
       };
@@ -1730,14 +1754,60 @@
         if (e.target.id === 'shareModal') closeShareModal();
       });
 
+      function dataUrlToBlob(dataUrl){
+        const [meta, base64] = dataUrl.split(',');
+        const mime = meta.match(/:(.*?);/)[1];
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+        return new Blob([bytes], { type: mime });
+      }
+
       document.getElementById('downloadImageBtn').onclick = () => {
         if (!cachedDataUrl) return;
-        const a = document.createElement('a');
-        a.href = cachedDataUrl;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+
+        // iOS Safari's support for the <a download> attribute on data URIs is
+        // notoriously unreliable — tapping the button can just silently do
+        // nothing (no download, no error, no navigation), which is exactly
+        // "can't click to download" on iPhone. There's no reliable way to
+        // trigger a real file download there, so instead open the image
+        // directly (as its own page) so the person can long-press it and use
+        // "Add to Photos" — the same save path already confirmed working for
+        // the modal's preview image.
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+          || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        if (isIOS) {
+          const win = window.open();
+          if (win) {
+            win.document.write(`<title>${fileName}</title><body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="${cachedDataUrl}" style="max-width:100%;height:auto;display:block;" alt="${fileName}"><p style="position:fixed;bottom:16px;left:0;right:0;text-align:center;color:#fff;font-family:sans-serif;font-size:14px;">長按圖片並選擇「儲存圖片」</p></body>`);
+          } else {
+            // Popup blocked — fall back to the modal's own <img>, which the
+            // person can already long-press directly.
+            alert('請長按彈窗中的圖片，選擇「儲存圖片」');
+          }
+          return;
+        }
+
+        try {
+          const blob = dataUrlToBlob(cachedDataUrl);
+          const blobUrl = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = blobUrl;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+        } catch (e) {
+          // Fallback to the original data URI approach if Blob conversion fails.
+          const a = document.createElement('a');
+          a.href = cachedDataUrl;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
       };
 
       document.getElementById('shareLinkBtn').onclick = async () => {
