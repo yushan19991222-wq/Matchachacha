@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="zh-TW" style="">
+<head>
+<link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>今天喝什抹</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script>
+  // The Tailwind Play CDN prints a "should not be used in production" console warning
+  // by design whenever it's not running on localhost. It's purely informational and
+  // doesn't affect functionality — filtered here just to keep the console clean for demos.
+  //
+  // html-to-image (used to render the shareable result PNG) also tries to fetch/inline
+  // the Google Fonts stylesheets it finds on the page. In network environments where
+  // that fetch is blocked/unreliable it fails repeatedly and logs a wall of "Failed to
+  // fetch" / "Error inlining remote css file" / "Error loading remote stylesheet" /
+  // "Error while reading CSS rules" messages. This is non-fatal — the PNG still renders,
+  // just without embedded webfonts (icons are inline SVG so they're unaffected) — so we
+  // filter those known noisy messages too, from both console.warn and console.error.
+  (function(){
+    const noisy = [
+      'cdn.tailwindcss.com',
+      'Failed to fetch',
+      'Error inlining remote css',
+      'Error loading remote stylesheet',
+      'Error while reading CSS rules',
+    ];
+    const isNoisy = (args) => args.some(a => {
+      const s = typeof a === 'string' ? a : (a && a.message) ? a.message : '';
+      return noisy.some(n => s.includes(n));
+    });
+    ['warn','error'].forEach(level => {
+      const original = console[level].bind(console);
+      console[level] = function(...args){
+        if(isNoisy(args)) return;
+        original(...args);
+      };
+    });
+  })();
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.14/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed-dim": "#e9c349",
+                "primary": "#163526",
+                "on-primary-fixed": "#012113",
+                "surface-tint": "#466553",
+                "secondary-fixed": "#ffe088",
+                "on-primary-container": "#99bca6",
+                "on-tertiary": "#ffffff",
+                "tertiary-fixed": "#e6e2d8",
+                "surface-variant": "#e4e2e2",
+                "tertiary": "#313029",
+                "inverse-primary": "#accfb8",
+                "on-secondary-fixed-variant": "#574500",
+                "surface-container-high": "#eae8e7",
+                "primary-container": "#2d4c3b",
+                "surface-container": "#efeded",
+                "tertiary-fixed-dim": "#cac6bd",
+                "on-primary-fixed-variant": "#2e4d3c",
+                "tertiary-container": "#47463f",
+                "on-surface": "#1b1c1c",
+                "surface": "#fbf9f8",
+                "on-tertiary-fixed": "#1c1c16",
+                "ink-black": "#2F313E",
+                "inverse-surface": "#303030",
+                "washi-paper": "#FAF9F6",
+                "background": "#fbf9f8",
+                "gold-leaf": "#C5A059",
+                "surface-dim": "#dbd9d9",
+                "primary-fixed-dim": "#accfb8",
+                "surface-container-lowest": "#ffffff",
+                "outline-variant": "#c2c8c1",
+                "matcha-bright": "#6AB59D",
+                "on-tertiary-fixed-variant": "#484740",
+                "outline": "#727973",
+                "on-error-container": "#93000a",
+                "secondary-container": "#fed65b",
+                "on-surface-variant": "#424843",
+                "on-primary": "#ffffff",
+                "matcha-deep": "#1B3022",
+                "on-secondary": "#ffffff",
+                "error": "#ba1a1a",
+                "surface-container-highest": "#e4e2e2",
+                "surface-bright": "#fbf9f8",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#f2f0f0",
+                "secondary": "#735c00",
+                "primary-fixed": "#c7ebd4",
+                "on-tertiary-container": "#b7b4ab",
+                "surface-container-low": "#f5f3f3",
+                "on-secondary-container": "#745c00",
+                "on-background": "#1b1c1c",
+                "on-secondary-fixed": "#241a00",
+                "on-error": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-mobile": "20px",
+                "gutter": "24px",
+                "margin-desktop": "64px",
+                "container-max": "1200px",
+                "unit": "8px"
+        },
+        "fontFamily": {
+                "headline-lg-mobile": ["Noto Serif TC", "serif"],
+                "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                "headline-lg": ["Noto Serif TC", "serif"],
+                "label-lg": ["Plus Jakarta Sans", "sans-serif"],
+                "display-lg": ["Noto Serif TC", "serif"],
+                "headline-md": ["Noto Serif TC", "serif"],
+                "body-md": ["Plus Jakarta Sans", "sans-serif"],
+                "label-sm": ["Plus Jakarta Sans", "sans-serif"]
+        },
+        "fontSize": {
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "display-lg": ["44px", {"lineHeight": "56px", "letterSpacing": "0em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  body {
+    background-color: #FAF9F6;
+    color: #1B3022;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .mincho {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    line-height: 1.4;
+  }
+
+  /* Base rules Google's Material Symbols require the page to define itself —
+     the @font-face from the Google Fonts <link> only supplies the glyph data;
+     without font-family + the 'liga' feature enabled here, spans like
+     <span class="material-symbols-rounded">local_bar</span> just render as
+     literal text ("local_bar") instead of substituting the icon glyph. */
+  .material-symbols-outlined, .material-symbols-rounded {
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .material-symbols-outlined { font-family: 'Material Symbols Outlined'; }
+  .material-symbols-rounded { font-family: 'Material Symbols Rounded'; }
+  
+  .zen-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom, #FAF9F6, #F2F0F0);
+    overflow: hidden;
+  }
+  .fog {
+    position: absolute;
+    width: 200%; height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(27, 48, 34, 0.03) 0%, transparent 60%);
+    filter: blur(60px);
+    animation: fogMove 40s linear infinite;
+  }
+  @keyframes fogMove {
+    0% { transform: translate(-25%, 10%) rotate(0deg); }
+    50% { transform: translate(0%, -10%) rotate(5deg); }
+    100% { transform: translate(-25%, 10%) rotate(0deg); }
+  }
+
+  .app-container {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+  }
+
+  @media (min-width: 768px) {
+    .app-container { max-width: 560px; padding: 40px 32px 120px; }
+    header { padding-left: 48px; padding-right: 48px; }
+    .slot-machine-container { width: 320px; height: 340px; }
+  }
+
+  @media (min-width: 1024px) {
+    .app-container { max-width: 560px; padding: 40px 36px 120px; }
+    header { padding-left: 72px; padding-right: 72px; }
+    .btn-primary, .btn-outline { padding-left: 52px; padding-right: 52px; }
+    .stage-actions-row { flex-direction: row; justify-content: center; gap: 20px; }
+    .stage-actions-row .btn-primary, .stage-actions-row .btn-outline { width: auto; min-width: 240px; }
+  }
+
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #c2c8c1; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+  .dot.active { background: #C5A059; width: 20px; border-radius: 10px; }
+  .dot.done { background: #1B3022; }
+
+  .stage { display: none; width: 100%; flex-direction: column; align-items: center; animation: fadeIn 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .stage.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .btn-primary {
+    background-color: #1B3022;
+    color: #FAF9F6;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid #1B3022;
+    display: inline-block;
+    min-width: 240px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .btn-primary:hover { background-color: #2e4d3c; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(27, 48, 34, 0.15); }
+  .btn-primary:disabled { opacity: 0.2; cursor: not-allowed; transform: none; }
+
+  .btn-outline {
+    background-color: transparent;
+    color: #1B3022;
+    padding: 15px 39px;
+    border-radius: 8px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border: 1px solid #1B3022;
+  }
+  .btn-outline:hover { background-color: rgba(27, 48, 34, 0.05); }
+
+  .slot-machine-container {
+    position: relative;
+    width: 320px;
+    height: 340px;
+    background: #1B3022;
+    border-radius: 48px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.1);
+    padding: 30px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .slot-display-panel {
+    width: 100%;
+    background: #2d4c3b;
+    border: 8px solid #C5A059;
+    border-radius: 20px;
+    padding: 16px 12px;
+    display: flex;
+    gap: 8px;
+    box-shadow: inset 0 4px 12px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+  }
+  .slot-window {
+    flex: 1;
+    height: 80px;
+    overflow: hidden;
+    background: #ffffff;
+    position: relative;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+  }
+  .slot-reel {
+    transition: transform 3.5s cubic-bezier(0.1, 0.7, 0.1, 1);
+    width: 100%;
+  }
+  .slot-item { height: 80px; display: flex; align-items: center; justify-content: center; font-size: 36px; color: #1B3022; }
+  .slot-item.placeholder { font-size: 24px; color: #dbd9d9; font-weight: 700; }
+  .slot-reel.spinning { filter: blur(4px); }
+
+  .slot-logo-badge {
+    margin-top: 36px;
+    background: #C5A059;
+    padding: 6px 20px;
+    border-radius: 4px;
+    color: #1B3022;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .lever-mechanism {
+    position: absolute;
+    right: -55px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .lever-base {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    background: #C5A059;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .lever-arm {
+    position: absolute;
+    bottom: 20px;
+    width: 10px;
+    height: 90px;
+    background: linear-gradient(to right, #C5A059, #8c6d3d);
+    border-radius: 5px;
+    transform-origin: bottom center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .lever-knob {
+    position: absolute;
+    top: -20px;
+    left: -10px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 30% 30%, #8c644d, #4a3428);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .lever-arm.pulled {
+    transform: rotateX(70deg) scaleY(0.6) translateY(20px);
+  }
+
+  .desc-card {
+    background: #ffffff;
+    border: 1px solid #e4e2e2;
+    padding: 16px 16px;
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+  }
+  .desc-card:hover { border-color: #C5A059; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.04); }
+  .desc-card.picked { border-color: #C5A059; background: #FAF9F6; }
+  .desc-card.dimmed { opacity: 0.3; filter: grayscale(0.8); pointer-events: none; }
+
+  .premium-scroll {
+    background-color: #ffffff;
+    background-image: radial-gradient(#fbf9f8 1px, transparent 1px);
+    background-size: 24px 24px;
+    border: 2px solid #e6e2d8;
+    position: relative;
+    padding: 0;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  }
+  .premium-scroll-content {
+    padding: 60px 48px;
+  }
+  @media (min-width: 768px) {
+    .premium-scroll-content { padding: 48px 24px; }
+  }
+  .dotted-border-strip {
+    width: 100%; height: 16px;
+    display: flex; overflow: hidden;
+  }
+  .dotted-border-strip .dbs-sq { flex: 0 0 12px; height: 16px; background: #C5A059; }
+  .dotted-border-strip .dbs-sq:nth-child(even) { background: #FAF9F6; }
+
+  .radar-label {
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    color: #424843;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .pour-out-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background: #f5f3f3;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .pour-out-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+  body.pour-lock {
+    overflow: hidden !important;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  body.pour-lock::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/新版 Edge */
+  }
+  #pourOutCanvas {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    display: block;
+  }
+
+  /* Stylized Chazutsu (Matcha Tin) Button */
+  .chazutsu-trigger {
+    width: 80px;
+    height: 100px;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .chazutsu-trigger:active {
+    transform: translateX(-50%) scale(0.95);
+  }
+  .chazutsu-trigger.pouring {
+    transform: translateX(-30%) translateY(-20px) rotate(-35deg);
+  }
+  .chazutsu-body {
+    width: 100%;
+    height: 70%;
+    background:
+      radial-gradient(ellipse at 28% 18%, rgba(255,255,255,0.16) 0%, transparent 45%),
+      linear-gradient(115deg, #1f3b2c 0%, #16291e 45%, #2d4c3b 100%);
+    border-radius: 6px 6px 16px 16px;
+    position: absolute;
+    bottom: 0;
+    box-shadow:
+      0 14px 24px rgba(0,0,0,0.28),
+      inset 2px 0 3px rgba(255,255,255,0.08),
+      inset -3px 0 6px rgba(0,0,0,0.35),
+      inset 0 6px 0 rgba(0,0,0,0.18);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .chazutsu-body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8c6d3d 0%, #E9C77A 45%, #8c6d3d 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .chazutsu-lid {
+    width: 104%;
+    height: 35%;
+    background:
+      radial-gradient(ellipse at 30% 15%, rgba(255,255,255,0.5) 0%, transparent 40%),
+      linear-gradient(135deg, #EFD08A 0%, #C5A059 50%, #8c6d3d 100%);
+    position: absolute;
+    top: 0;
+    left: -2%;
+    border-radius: 6px 6px 3px 3px;
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.22),
+      inset 1px 1px 1px rgba(255,255,255,0.35),
+      inset 0 -3px 3px rgba(0,0,0,0.18);
+  }
+  .chazutsu-label {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 58%;
+    height: 46%;
+    background: linear-gradient(160deg, #FFFFFF 0%, #FAF9F6 100%);
+    border: 1.5px solid rgba(197,160,89,0.55);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1B3022;
+    padding: 2px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.6);
+  }
+</style>
+<style>.desc-card { border-radius: 16px !important; transition: all 0.3s ease-in-out !important; }</style></head>
+<body class="selection:bg-primary-fixed-dim">
+<div class="zen-bg"><div class="fog"></div></div>
+<header class="fixed top-0 left-0 right-0 flex items-center justify-between px-8 py-4 bg-[#FAF9F6] z-50 border-b border-outline-variant/40" id="mainHeader">
+<button class="flex items-center gap-4" id="homeLogoBtn" style="background:none; border:none; cursor:pointer; padding:0;" type="button">
+<img alt="抹茶碗" class="w-8 h-8 object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAABbRJREFUeJztm1tsFFUYx//fmd3utkvLpVBgl1qK7cpNaOVqQAghChpRQtDEBzRBJQrhQaMxIV5IvMCLPBF8MEjiXTGAYGg01Iim1W7blJvS3RIIbWlp6ZYEuksvM3N8MDS1ndmd3T1npsb+Hjbp+c585z//nj0z35lZgo2Evtt5SI1Fn+Ock1GcKW7dO+GeN8s3vLfHLk2GQmTAv92dVR0P9yXrpygefdmMmR5as1u1QxezYxAAqMvqWWWln6b1sTNxzJet5y62GUADmuWxiJhtM9M2A0YrYwY4LcBpxgxwWoDTjBngtACnGTPAaQFO8783wGXXQMybq1G8Y/BvDoLizjbsq5Gi2aXLNgNy/WXb8vzllvpyTisBnJOr6B9sKTpaa47k97qoA4Bi8ZD2HO4q8S/eEJepC7BpDehzK5/B+skDwPQ4tO2y9AxF+gy4FPqqEIr3ahpjRfmAZ1bp8sduydB1F+kzgLuyP0d6Ruczd98rovUMR+oMaK76+t7+bE8TeNrj3HK73TOLFjx+U6iwIUidAX1ez8EMTh4A8tT+/p3CBBkgbQaEq08EFI/akukYnNCtxdnM2SufvC1I2r+QNgNYlnoIAgwmjklur7ZDgCTj/DKSnj37Y4FPjbdDnMFdfd6B4nnznu4RlG8QKTMgR72zT3DuyZ5e1zMC8w0ixQAGvlF0Tk70guicgAQDLtce28wBn+i8xLE00nC0THRe4QZwpr8jOuddmIatonMmrgafQta0a6UPD2hsopVkU8bn5VSEzswToswAVdO2Fq5e2BDv7R1I2pmzWBZTG9sLmyI4DNPy2vQqkL8suIXpOESpFTGjEGrWGW3qqmmsN4qafgUUDR//908eAPg9TNc/NYsaGjChvLgIBI88UbYzd+KiWeONAoYG+Nz9wm84nGZ8rm74boLpGlCwJMjlybEZQk9nKJJrFDJdAziRLW9o2ALHDbOQqQFM1/vlqHGE1A0AISpFiiPQJbOIqQE6cNmo/dXnt+OXL0+gKFAoQpktEPSLZrEEt8Kswah19bIVmFMSxOZHn8hcmU3onDWaxcxvhNz6KaP26voQAGD10hUZC7MLDpw3i5kacL26qQLg+vD20zVVAIBF95ch1zdOiEDJtHfVhcNmwUTVoA7OWoY31l84g9uxHrgUBRvWrhOiUDKViYIJy2EO/Dy8bUBVcfjk9wCAHVteBGOj+wEzB0/fgCxGe43aP/riE6iahpKiYjzy0JpM9Mmm1+PKOp6oQ0IDroUaIwA1D29vbmvFiVMVAIAPXnsLE/IM6wzn4Tja+vuf3Ym6JJ2/XNcOGLW/f2AfYvE4AlOn48Nd74LItrdbLUOEg8n6JK334+3dNb5A/usA3EPbb/Xcxo3uLqxftRbB4hLMmO5HZdVp6PqIC4cjEFDfURvZlayflQ0PfZx/cgyE9cMD58MXkePNxtKFD2B+cA7K5i7A8cqKUWECAc/G2qKGd7NDsbTjE2uL/uEL5L8EYMSF/3SoGgpTsLx8MWYVFqHufAOutFxNQ7JAOI511kUs/ejC8pZXTmBaJUHbBoz8slfV16Dhr3O40tKMb04ec3oGdGhubLzTGrX0LDGllWvK4uAOIuxPT5ctqBx87Y3apl+tHpDSpme8LVrrC0wqBWhB6tqkoxPwcmdt09FUDkp51zfW1n0k15+fxwkPpnqsRPqJY0tHXcR099eMtLa9e9qiP+UEJt0kTutA9v3wyoRrjLNNHXXhH9I5OCPx/kXB2SrDSQDFmeRJE42D79cYf7u75lLaL1IJ+e9NWRLcS8AbInJZhYA9Vm50kiGklFOYPqJekA0n5hWRx75alg9+jCrsM4AGP0YVQgxQOXPgGYIm5MGNEAOmxtxH7J7cxPhvQvKISAIABUtKrwM0VVS+hBBFO0PhAgAZFx3C1oBOPe8+Al2B1JWO6wC/oCl8IQScPAD8DUTRqbbcB8NIAAAAAElFTkSuQmCC"/>
+<span class="text-xl font-bold tracking-[0.15em] text-matcha-deep">今天喝什抹</span>
+</button>
+<div class="progress flex gap-3" id="progress"><div class="dot done"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</header>
+<!-- Full-screen Cinematic Transition Overlay -->
+<div class="pour-out-overlay" id="cinematicOverlay">
+<canvas height="2620" id="pourOutCanvas" width="780"></canvas>
+<div class="absolute left-0 w-full flex flex-col items-center" id="pourCaption" style="top:70%;">
+<div class="text-label-lg tracking-[0.5em] text-gold-leaf uppercase animate-pulse mb-4">正在為您斟茶</div>
+<div class="text-sm font-light text-on-surface-variant/40 tracking-widest italic mincho">Every pour carries a little bit of soul</div>
+</div>
+</div>
+<div class="app-container">
+<!-- Stage 0:緣分的開端 -->
+<section class="stage" id="stage-drink">
+<span class="text-label-sm text-gold-leaf tracking-[0.3em] uppercase mb-4">Discovery</span>
+<h2 class="text-display-lg text-center mb-6">今天喝什抹</h2>
+<p class="text-body-md text-on-surface-variant text-center max-w-sm leading-relaxed mb-8">準備好就開始吧！<br/>今天喝什抹，讓命運來決定。</p>
+<div class="relative mb-8">
+<div class="slot-machine-container" style="width: 280px; height: 280px; padding: 20px;">
+<div class="slot-display-panel border-4">
+<div class="slot-window"><div class="slot-reel" id="slotReel1" style="transition: none; transform: translateY(0px);"><div class="slot-item placeholder">?</div></div></div>
+<div class="slot-window"><div class="slot-reel" id="slotReel2" style="transition: none; transform: translateY(0px);"><div class="slot-item placeholder">?</div></div></div>
+<div class="slot-window"><div class="slot-reel" id="slotReel3" style="transition: none; transform: translateY(0px);"><div class="slot-item placeholder">?</div></div></div>
+</div>
+<div class="slot-logo-badge">今天喝什抹</div>
+<div class="lever-mechanism">
+<div class="lever-base"></div>
+<div class="lever-arm" id="leverArm"><div class="lever-knob"></div></div>
+</div>
+</div>
+</div>
+<div class="drink-result-wrap mb-8 min-h-[64px] flex flex-col items-center justify-center transition-all duration-700 transform opacity-100 translate-y-0" id="drinkResultWrap">
+<span class="text-label-sm text-gold-leaf uppercase tracking-widest mb-2">登愣！今天你要喝的是...</span>
+<div class="text-headline-md text-matcha-deep font-bold mincho text-center" id="drinkResult">玄琥之啡</div>
+</div>
+<div class="flex flex-col items-center gap-6 stage-actions-row w-full">
+<button class="btn-primary" disabled="" id="startBtn" style="display: none;">啟動拉霸機</button>
+<button class="btn-primary" id="drinkContinueBtn" style="display: inline-block;">接受命運的安排</button>
+</div>
+</section>
+<!-- Stage 1: 觀色辯味 -->
+<section class="stage active" id="stage-matcha">
+<span class="text-label-sm text-gold-leaf tracking-[0.3em] uppercase mb-4">Knowledge</span>
+<h2 class="text-headline-lg text-center mb-6" id="matchaHeading">「玄琥之啡」<br>的抹契搭檔是...</h2>
+<p class="text-body-md text-on-surface-variant text-center mb-8">每款抹茶粉都自認是命中注定的那一位<br/>機會只有一次，錯過無法重來</p>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 w-full" id="matchaGrid"></div>
+<div class="mt-16">
+<button class="btn-primary" id="matchaContinueBtn" style="display: inline-block;">已下好離手</button>
+</div>
+</section>
+<!-- Stage 2: 分寸之間 -->
+<section class="stage" id="stage-pour">
+<span class="text-label-sm text-gold-leaf tracking-[0.3em] uppercase mb-4">Sensation</span>
+<h2 class="text-headline-lg text-center mb-6">大師都是靠感覺</h2>
+<p class="text-body-md text-on-surface-variant text-center mb-12 mb-8 px-4">One 抹 Two 抹還是 No 抹<br/>全靠你的第六感</p>
+<div class="relative w-full max-w-[340px] md:max-w-[420px] aspect-square mb-4 flex flex-col items-center">
+<div class="chazutsu-trigger transition-all duration-700" id="scoopBtn" style="top: 15px;">
+<div class="chazutsu-lid"></div>
+<div class="chazutsu-body">
+<div class="chazutsu-label"><span class="material-symbols-rounded" style="font-size:20px; color:#163526; font-variation-settings: 'FILL' 1;">eco</span></div>
+</div>
+</div>
+<canvas class="w-full h-full" height="400" id="pourCanvas" width="400"></canvas>
+</div>
+<div class="pour-readout h-8 text-label-lg text-on-surface-variant mb-8 italic" id="pourReadout">點擊茶罐添加茶粉</div>
+<div class="flex justify-center w-full">
+<button class="btn-primary w-full max-w-[240px] whitespace-nowrap" disabled="" id="confirmPourBtn">就是這個濃度！</button>
+</div>
+</section>
+<!-- Stage 3: 激盪翠沫 -->
+<section class="stage stage-whisk" id="stage-whisk">
+<span class="text-label-sm text-gold-leaf tracking-[0.3em] uppercase mb-4">Technique</span>
+<h2 class="text-headline-lg text-center mb-6">拿出你的真本事</h2>
+<p class="text-body-md text-on-surface-variant text-center">考驗真功夫的時刻到了<br/>手痠了嗎？請加油</p>
+<div class="w-full max-w-[400px] md:max-w-[480px] aspect-square relative">
+<canvas class="w-full h-full touch-none cursor-crosshair" height="600" id="whiskCanvas" width="600"></canvas>
+</div>
+<div class="whisk-hint text-label-sm text-on-surface-variant/60 mb-8" id="whiskHint">拖曳茶筅，揮灑你的節奏吧</div>
+<div id="whiskControls" style="display: none;">
+<button class="btn-primary" disabled="" id="whiskFinishBtn">收筅！</button>
+</div>
+<div class="w-full space-y-8 mt-6" id="whiskBreakdown" style="display: block;"></div>
+<div class="mt-12" id="whiskContinueRow" style="display: flex;">
+<button class="btn-primary" id="whiskContinueBtn">揭曉試煉成果</button>
+</div>
+</section>
+<!-- Stage 4: Results -->
+<section class="stage" id="stage-results">
+<div class="premium-scroll w-full mb-4 mt-4" id="masteryCard"><div class="dotted-border-strip"></div><div class="premium-scroll-content"><div class="flex flex-col items-center mb-6"><div class="relative flex items-center justify-center w-24 h-24"><svg class="absolute inset-0" height="96" viewBox="0 0 96 96" width="96"><circle cx="48" cy="48" fill="none" r="46" stroke="#C5A059" stroke-opacity="0.2" stroke-width="4"></circle><circle cx="48" cy="48" fill="none" r="41" stroke="#C5A059" stroke-opacity="0.4" stroke-width="1"></circle></svg><span class="text-4xl font-bold text-gold-leaf font-mono" id="totalNum">80</span><div class="absolute -bottom-2 bg-gold-leaf text-white text-[10px] px-2 py-0.5 tracking-widest uppercase font-bold" style="border-radius:20px;">Score</div></div></div><div class="flex flex-col items-center">
+<div class="text-headline-md text-matcha-deep font-bold mincho mb-0" id="certRankTitle"><div class="relative px-8 py-3 border-y border-gold-leaf/30 bg-gradient-to-r from-transparent via-gold-leaf/5 to-transparent text-center my-2">
+<div class="absolute left-0 top-0 w-2 h-2 border-l border-t border-gold-leaf"></div>
+<div class="absolute right-0 top-0 w-2 h-2 border-r border-t border-gold-leaf"></div>
+<div class="absolute left-0 bottom-0 w-2 h-2 border-l border-b border-gold-leaf"></div>
+<div class="absolute right-0 bottom-0 w-2 h-2 border-r border-b border-gold-leaf"></div>
+<span class="tracking-[0.25em] uppercase flex flex-col items-center gap-1" id="totalVerdict">茶道達人</span>
+</div></div>
+<!-- Radar Chart -->
+<div class="w-full flex justify-center my-4">
+<div class="radar-chart-box" style="position:relative; width:100%; max-width:400px; aspect-ratio:400/220;">
+<svg style="position:absolute; left:25%; top:4.55%; width:50%; height:90.9%;" viewbox="0 0 200 200">
+<polygon fill="none" points="100,20 176,75 147,165 53,165 24,75" stroke="#e6e2d8" stroke-dasharray="4 4" stroke-width="1"></polygon>
+<polygon fill="none" points="100,60 138,87 123,132 77,132 62,87" stroke="#e6e2d8" stroke-dasharray="4 4" stroke-width="1"></polygon>
+<line stroke="#e6e2d8" stroke-width="1" x1="100" x2="100" y1="100" y2="20"></line>
+<line stroke="#e6e2d8" stroke-width="1" x1="100" x2="176" y1="100" y2="75"></line>
+<line stroke="#e6e2d8" stroke-width="1" x1="100" x2="147" y1="100" y2="165"></line>
+<line stroke="#e6e2d8" stroke-width="1" x1="100" x2="53" y1="100" y2="165"></line>
+<line stroke="#e6e2d8" stroke-width="1" x1="100" x2="24" y1="100" y2="75"></line>
+<polygon fill="rgba(197, 160, 89, 0.3)" id="radarPolygon" points="100,68 170,77 125,135 65,148 33,78" stroke="#C5A059" stroke-width="2"></polygon>
+</svg>
+<div class="radar-label" style="left:47.5%; top:10%; transform:translate(-50%,-50%);">抹茶選擇 (40)</div>
+<div class="radar-label" style="left:68.75%; top:36.36%; transform:translate(0,-50%);">粉量掌控 (92)</div>
+<div class="radar-label" style="left:61.25%; top:86.36%; transform:translate(-50%,-50%);">點茶技法 (54)</div>
+<div class="radar-label" style="left:33.75%; top:86.36%; transform:translate(-50%,-50%);">儀式節奏 (75)</div>
+<div class="radar-label" style="left:26.25%; top:36.36%; transform:translate(-100%,-50%);">心境穩定 (88)</div>
+</div>
+</div>
+
+<div class="w-full space-y-4 mb-8 border-t border-b border-outline-variant py-4" id="resultsBreakdown"></div>
+<div class="text-xl text-primary font-bold mb-2 mincho w-full text-center" id="certDrink" style="white-space:nowrap; letter-spacing:0.05em; font-size:clamp(11px,4.2vw,18px);">青檸沁抹茶</div>
+<div class="text-label-sm text-on-surface-variant/60 tracking-widest w-full text-center" id="certDetail">最終成績：63 · 2026/7/8 認證</div>
+</div></div><div class="dotted-border-strip"></div></div>
+
+<div class="flex flex-col items-center gap-4 w-full stage-actions-row">
+<button class="btn-primary w-full flex items-center justify-center gap-2" id="shareBtn">
+<span class="material-symbols-outlined text-xl">share</span>
+    分享試煉成果
+  </button>
+<button class="btn-outline w-full" id="playAgainBtn">One 抹 Time</button>
+</div></section>
+</div>
+
+<!-- Share Result Modal -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/60 p-4" id="shareModal" style="backdrop-filter: blur(6px);">
+<div class="bg-[#FAF9F6] w-full max-w-sm rounded-sm overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+<div class="overflow-y-auto px-4 pt-4">
+<img alt="抹茶試煉成果" class="w-full block" id="shareImagePreview"/>
+<p class="text-center text-label-sm text-on-surface-variant/60 mt-3 mb-1 tracking-widest" id="shareModalHint">電腦按右鍵「另存圖片」，手機請長按圖片存到相簿</p>
+</div>
+<div class="flex flex-col gap-3 p-4">
+<button class="btn-primary w-full flex items-center justify-center gap-2" id="downloadImageBtn">
+<span class="material-symbols-outlined text-xl">download</span>
+    儲存圖片
+  </button>
+<button class="btn-outline w-full flex items-center justify-center gap-2" id="shareLinkBtn">
+<span class="material-symbols-outlined text-xl">link</span>
+    分享連結
+  </button>
+<button class="text-center text-label-sm text-on-surface-variant/60 tracking-widest underline mt-1" id="closeShareModalBtn">關閉</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+  const stageOrder = ['drink','matcha','pour','whisk','results'];
+  let stageIndex = 0;
+
+  const state = {
+    drink: null,
+    matchaLabel: null, matchaTraits: null, matchaScore: 0,
+    pourAmount: 0, pourScore: 0,
+    whiskOverall: 0, whiskScore: 0, whiskBreakdownData: null,
+  };
+
+  const MAX = { matcha: 25, pour: 25, whisk: 50 };
+
+  function rand(lo,hi){ return lo + Math.random()*(hi-lo); }
+  function scoreCurve(value, [lo,hi]){
+    if(value>=lo && value<=hi) return 100;
+    const halfWidth = (hi-lo)/2;
+    const dist = value<lo ? lo-value : value-hi;
+    const falloff = Math.max(0, 100 - (dist/(halfWidth*1.9))*100);
+    return Math.round(Math.max(0, Math.min(100, falloff)));
+  }
+
+  // Time scoring is split into three named phases instead of one continuous
+  // curve, and deliberately does NOT reward "just keep whisking longer":
+  //   1. 基礎期 (foundation) — under the ideal window: matcha genuinely needs a
+  //      minimum amount of whisking to even form foam, so stopping early is
+  //      scored on a ramp up to the window, not a cliff.
+  //   2. 發展期 (development) — inside the ideal window: this is where the
+  //      achievable-high-score range now lives, and it's wider than before,
+  //      but still peaked around the center rather than flat.
+  //   3. 過度期 (overextension) — past the ideal window: matcha whisked far
+  //      too long actually goes flat / the foam starts breaking down, so
+  //      score decays the longer it drags on past the ideal window instead
+  //      of holding steady or climbing.
+  function wTimeScore(activeMs, ideal){
+    const sec = activeMs/1000;
+    const lo = ideal[0]/1000, hi = ideal[1]/1000;
+    const center = (lo+hi)/2, halfWidth = (hi-lo)/2;
+    if(sec < lo){
+      const foundation = Math.max(0, sec/lo);
+      return Math.round(Math.max(0, Math.min(100, 25 + foundation*50)));
+    }
+    if(sec <= hi){
+      const distFromCenter = Math.abs(sec-center)/halfWidth;
+      return Math.round(Math.max(0, Math.min(100, 100 - distFromCenter*22)));
+    }
+    const over = sec - hi;
+    const overRatio = Math.min(1, over/(halfWidth*1.6));
+    return Math.round(Math.max(18, 78 - overRatio*60));
+  }
+  // Same idea as scoreCurve, but the "ideal window" isn't a flat plateau —
+  // two whisks that both land inside [lo,hi] still get different scores
+  // depending on how close to the exact center they are. scoreCurve alone
+  // meant anyone who landed anywhere in a (often fairly wide) ideal window
+  // scored identically to someone who nailed it dead-center, which was a big
+  // chunk of why the whisking mini-game didn't feel discriminating.
+  function peakedCurve(value, [lo,hi]){
+    const center = (lo+hi)/2, halfWidth = (hi-lo)/2;
+    const dist = Math.abs(value-center);
+    if(dist <= halfWidth){
+      return Math.round(100 - (dist/halfWidth)*18);
+    }
+    const outDist = dist - halfWidth;
+    const falloff = Math.max(0, 82 - (outDist/(halfWidth*1.7))*82);
+    return Math.round(Math.max(0, Math.min(100, falloff)));
+  }
+
+  function renderProgress(){
+    const el = document.getElementById('progress');
+    el.innerHTML = stageOrder.map((s,i)=>{
+      const cls = i===stageIndex ? 'dot active' : (i<stageIndex ? 'dot done' : 'dot');
+      return `<div class="${cls}"></div>`;
+    }).join('');
+  }
+
+  function goToStage(name){
+    stageIndex = stageOrder.indexOf(name);
+    document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+    const stageEl = document.getElementById('stage-'+name);
+    if(stageEl) stageEl.classList.add('active');
+    renderProgress();
+    window.scrollTo({top:0, behavior:'smooth'});
+    if(name==='whisk') resetWhiskStage();
+  }
+
+  const IDEAL = {
+    timeMs: [18000, 34000], speed: [460, 1400], maxCV: 0.62,
+    reversalRate: [2.2, 6.2], pressure: [0.22, 1.0], powder: [40, 60],
+  };
+
+  function randomizeIdeals(){
+    const timeCenter = rand(22000, 32000);
+    IDEAL.timeMs = [timeCenter-8000, timeCenter+8000];
+    const speedCenter = rand(700, 1000);
+    IDEAL.speed = [speedCenter-470, speedCenter+470];
+    const techCenter = rand(3.2, 5.2);
+    IDEAL.reversalRate = [techCenter-2, techCenter+2];
+    const powderCenter = rand(35, 65);
+    IDEAL.powder = [powderCenter-15, powderCenter+15];
+  }
+
+  const DRINKS = [
+    {name:'極上薄茶', emoji:'🍵'},
+    {name:'雲朵拿鐵', emoji:'🥛'},
+    {name:'玄琥之啡', emoji:'☕'},
+    {name:'青檸沁抹茶', emoji:'🍋'},
+    {name:'椰風抹茶', emoji:'🥥'},
+    {name:'柚見翠波', emoji:'🍊'},
+  ];
+  const SLOT_ITEM_H = 80;
+  const SLOT_LOOPS = 6;
+
+  function initDrinkStage(){
+    const reels = [
+      document.getElementById('slotReel1'),
+      document.getElementById('slotReel2'),
+      document.getElementById('slotReel3')
+    ];
+    const startBtn = document.getElementById('startBtn');
+    const continueBtn = document.getElementById('drinkContinueBtn');
+    const resultWrap = document.getElementById('drinkResultWrap');
+    const resultEl = document.getElementById('drinkResult');
+    const leverArm = document.getElementById('leverArm');
+
+    resultWrap.classList.add('opacity-0', 'translate-y-4');
+    resultEl.innerHTML = '';
+    startBtn.style.display = 'inline-block';
+    startBtn.disabled = false;
+    continueBtn.style.display = 'none';
+    leverArm.classList.remove('pulled');
+
+    reels.forEach(reel => {
+      let html = '<div class="slot-item placeholder">?</div>'; 
+      for(let l=0;l<SLOT_LOOPS;l++){
+        DRINKS.forEach(d=>{ html += `<div class="slot-item">${d.emoji}</div>`; });
+      }
+      reel.innerHTML = html;
+      reel.classList.remove('spinning');
+      reel.style.transition = 'none';
+      reel.style.transform = 'translateY(0px)';
+    });
+
+    startBtn.onclick = ()=>{
+      startBtn.disabled = true;
+      leverArm.classList.add('pulled');
+      setTimeout(() => leverArm.classList.remove('pulled'), 600);
+      const targetIndex = Math.floor(Math.random()*DRINKS.length);
+      const chosen = DRINKS[targetIndex];
+      state.drink = chosen.name;
+      const finalIndex = (SLOT_LOOPS - 1) * DRINKS.length + targetIndex + 1;
+
+      reels.forEach((reel, i) => {
+        setTimeout(() => {
+          reel.classList.add('spinning');
+          reel.style.transition = `transform ${2.5 + i*0.6}s cubic-bezier(0.1, 0.7, 0.1, 1)`;
+          reel.style.transform = `translateY(-${finalIndex * SLOT_ITEM_H}px)`;
+        }, i * 150);
+      });
+
+      setTimeout(()=>{
+        resultEl.innerHTML = chosen.name;
+        resultWrap.classList.remove('opacity-0', 'translate-y-4');
+        resultWrap.classList.add('opacity-100', 'translate-y-0');
+        continueBtn.style.display = 'inline-block';
+        startBtn.style.display = 'none';
+        reels.forEach(reel => {
+          reel.classList.remove('spinning');
+          reel.style.transition = 'none';
+          reel.style.transform = `translateY(-${finalIndex * SLOT_ITEM_H}px)`;
+        });
+      }, 4500);
+    };
+
+    continueBtn.onclick = ()=>{ initMatchaStage(); goToStage('matcha'); };
+  }
+
+  const ARCHETYPE_META = [
+    {title:'①號選手', dotRadius:1.1, dotCount:44},
+    {title:'②號選手', dotRadius:1.7, dotCount:32},
+    {title:'③號選手', dotRadius:1.3, dotCount:30},
+    {title:'④號選手', dotRadius:3.6, dotCount:9},
+    {title:'⑤號選手', dotRadius:1.9, dotCount:24},
+    {title:'⑥號選手', dotRadius:2.7, dotCount:15},
+  ];
+  const POOL_VARIANTS = [
+    [ // 0 - 石磨極細・鮮翠綠
+      {color:'#4E9F3D', tag:'質地如絲、苦味低，帶濃郁回甘海苔香。', traits:['絲滑','回甘','海苔香']},
+      {color:'#57B34A', tag:'苦味極低，回甘悠長，帶淡雅海苔香氣。', traits:['低苦味','回甘','海苔香']},
+      {color:'#3F8F35', tag:'香氣清雅，回甘顯著，幾乎不帶澀感。', traits:['清雅','回甘','低澀感']},
+    ],
+    [ // 1 - 微細粉末・飽和翠色
+      {color:'#2E7D32', tag:'色澤深邃，口感厚實，鮮味十足。', traits:['厚實','鮮味','濃郁']},
+      {color:'#256429', tag:'風味濃厚，微帶苦韻，回甘明顯。', traits:['濃厚','苦韻','回甘']},
+      {color:'#1F5D24', tag:'入口略澀，海苔香氣濃郁，鮮味十足。', traits:['略澀','海苔香','鮮味']},
+    ],
+    [ // 2 - 低溫研磨・淡黃綠
+      {color:'#C6D96B', tag:'帶有清爽的嫩葉香氣，滋味細緻淡雅。', traits:['清爽','嫩葉香','淡雅']},
+      {color:'#D8E28C', tag:'香氣清雅，微帶澀感，滋味清爽不重。', traits:['清雅','微澀','清爽']},
+      {color:'#B9CE55', tag:'口感清淡，微澀順口，海苔香氣淡雅。', traits:['清淡','微澀','海苔香']},
+    ],
+    [ // 3 - 中度顆粒・森林綠
+      {color:'#1B5E20', tag:'茶感直接且帶有明顯草本味，風味強勁。', traits:['直接','草本澀','強勁']},
+      {color:'#164A19', tag:'澀感明顯，尾韻微苦，風味濃烈直接。', traits:['澀感明顯','微苦','濃烈']},
+      {color:'#215E24', tag:'口感濃烈，苦澀交織，回甘較不明顯。', traits:['濃烈','苦澀交織','回甘弱']},
+    ],
+    [ // 4 - 細膩研磨・橄欖色
+      {color:'#6B6E23', tag:'口感沉穩，帶有微微堅果與炭焙香氣。', traits:['沉穩','堅果香','炭焙']},
+      {color:'#7C7F2E', tag:'口感醇厚，帶著淡淡回甘，微澀不明顯。', traits:['醇厚','回甘','低澀感']},
+      {color:'#5C5E1D', tag:'香氣溫和，回甘清晰，海苔調性明顯。', traits:['溫和','回甘','海苔調']},
+    ],
+    [ // 5 - 傳統加工・深橄欖綠
+      {color:'#4B5320', tag:'帶有原始茶葉辛香與微苦感，層次分明。', traits:['辛香','微苦','層次分明']},
+      {color:'#3E4519', tag:'口感偏苦，回甘不明顯，風味樸拙濃烈。', traits:['偏苦','樸拙','濃烈']},
+      {color:'#565E27', tag:'澀感明顯，海苔香濃郁，屬傳統重口感。', traits:['澀感明顯','海苔香','重口感']},
+    ],
+  ];
+  const PAIRING = {
+    '極上薄茶': [0,1,4,2,5,3],
+    '雲朵拿鐵': [1,0,4,5,2,3],
+    '玄琥之啡': [1,4,5,0,3,2],
+    '青檸沁抹茶': [2,0,1,5,4,3],
+    '椰風抹茶': [2,1,0,5,3,4],
+    '柚見翠波': [2,0,1,5,4,3],
+  };
+  const RANK_POINTS = [25,22,18,14,10,6];
+
+  // Renders a fixed-size (48x48) dot-pattern "powder" icon. dotRadius/dotCount
+  // control how big and how dense the individual grains look, so the overall
+  // icon footprint stays identical across cards while the texture communicates
+  // grind coarseness.
+  function renderGrainIcon(color, dotRadius, dotCount){
+    let circles = '';
+    for(let i=0;i<dotCount;i++){
+      const x = 5 + Math.random()*38;
+      const y = 5 + Math.random()*38;
+      const r = dotRadius * (0.75 + Math.random()*0.5);
+      circles += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="${color}"/>`;
+    }
+    return `<svg viewBox="0 0 48 48" width="40" height="40" style="display:block;margin:0 auto;">${circles}</svg>`;
+  }
+
+  function initMatchaStage(){
+    const grid = document.getElementById('matchaGrid');
+    const btn = document.getElementById('matchaContinueBtn');
+    const order = PAIRING[state.drink] || [0,1,2,3,4,5];
+    btn.style.display = 'none';
+    document.getElementById('matchaHeading').innerHTML = `「${state.drink}」<br>的抹契搭檔是...`;
+
+    // Roll a fresh set of 6 cards: one random flavor variant per archetype
+    const roundDescriptions = ARCHETYPE_META.map((meta, id) => {
+      const variants = POOL_VARIANTS[id];
+      const v = variants[Math.floor(Math.random() * variants.length)];
+      return { archetypeId: id, dotRadius: meta.dotRadius, dotCount: meta.dotCount, color: v.color, tag: v.tag, traits: v.traits };
+    });
+
+    // Shuffle the display order so the layout isn't memorizable
+    const displayOrder = [0,1,2,3,4,5];
+    for(let i = displayOrder.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      [displayOrder[i], displayOrder[j]] = [displayOrder[j], displayOrder[i]];
+    }
+
+    const CIRCLED_NUMS = ['①','②','③','④','⑤','⑥'];
+
+    grid.innerHTML = displayOrder.map((i, pos) => {
+      const d = roundDescriptions[i];
+      return `
+      <div class="desc-card" data-i="${i}" data-pos="${pos}">
+        <span class="absolute top-4 right-5 text-gold-leaf font-mono text-xs opacity-0 transition-opacity points-badge"></span>
+        <div class="desc-icon mb-4">${renderGrainIcon(d.color, d.dotRadius, d.dotCount)}</div>
+        <div class="text-sm font-bold text-matcha-deep mb-2">${CIRCLED_NUMS[pos]}號選手</div>
+        <div class="text-[11px] text-on-surface-variant leading-relaxed tracking-wider">${d.tag}</div>
+      </div>
+    `;
+    }).join('');
+
+    let picked = false;
+    grid.querySelectorAll('.desc-card').forEach((card)=>{
+      card.addEventListener('click', ()=>{
+        if(picked) return;
+        picked = true;
+        const i = parseInt(card.dataset.i, 10);
+        const pos = parseInt(card.dataset.pos, 10);
+        const d = roundDescriptions[i];
+        const rank = order.indexOf(d.archetypeId);
+        const pts = RANK_POINTS[rank];
+        card.classList.add('picked');
+        card.querySelector('.points-badge').textContent = '+'+pts;
+        card.querySelector('.points-badge').style.opacity = '1';
+        grid.querySelectorAll('.desc-card').forEach(c=>{ if(c!==card) c.classList.add('dimmed'); });
+        state.matchaLabel = `${CIRCLED_NUMS[pos]}號選手`;
+        state.matchaTraits = d.traits;
+        state.matchaScore = pts;
+        btn.style.display = 'inline-block';
+      });
+    });
+    btn.onclick = ()=> goToStage('pour');
+  }
+
+  const MATCHA_PALE = [223,232,206], MATCHA_DEEP = [45,59,38];
+  function matchaLiquidColor(fill){
+    return MATCHA_PALE.map((v,i)=> Math.round(v + (MATCHA_DEEP[i]-v)*Math.min(1,Math.max(0,fill))));
+  }
+
+  let pourCtx, pourCanvas, pouring=false, pourAmount=0, pourRaf=null, pourLastT=null, pourParticles=[];
+  function initPourStage(){
+    pourCanvas = document.getElementById('pourCanvas');
+    pourCtx = pourCanvas.getContext('2d');
+    pourAmount = 0;
+    pourParticles = [];
+    document.getElementById('confirmPourBtn').disabled = true;
+    document.getElementById('pourReadout').textContent = '點擊茶罐添加茶粉';
+    const scoopBtn = document.getElementById('scoopBtn');
+    
+    function start(e){ 
+      e.preventDefault(); 
+      pouring = true; 
+      pourLastT = performance.now();
+      scoopBtn.classList.add('pouring');
+    }
+    function stop(){ 
+      pouring = false; 
+      scoopBtn.classList.remove('pouring');
+    }
+    
+    scoopBtn.addEventListener('mousedown', start);
+    scoopBtn.addEventListener('touchstart', start, {passive:false});
+    window.addEventListener('mouseup', stop);
+    window.addEventListener('touchend', stop);
+    
+    document.getElementById('confirmPourBtn').onclick = ()=>{
+      const raw = scoreCurve(pourAmount, IDEAL.powder);
+      state.pourAmount = pourAmount;
+      state.pourScore = Math.round(raw/100 * MAX.pour);
+      goToStage('whisk');
+    };
+    
+    function loop(now){
+      const dt = pourLastT ? now-pourLastT : 16;
+      pourLastT = now;
+      if(pouring && pourAmount<100){
+        pourAmount = Math.min(100, pourAmount + dt*0.026);
+        document.getElementById('confirmPourBtn').disabled = pourAmount<6;
+        const readout = document.getElementById('pourReadout');
+        if(pourAmount<25) readout.textContent = '細粉如霧，輕輕飄落';
+        else if(pourAmount<50) readout.textContent = '翠色正在碗中暈染開來';
+        else if(pourAmount<75) readout.textContent = '茶香漸濃，韻味浮現';
+        else readout.textContent = '色澤深邃如夜，濃烈滿溢';
+        for(let i=0;i<4;i++){
+          pourParticles.push({
+            x: (pourCanvas.width/2) - 35 + (Math.random()-0.5)*12,
+            y: 35,
+            vy: 1.0 + Math.random()*1.2,
+            vx: (Math.random()-0.5)*1.2,
+            size: 1.0 + Math.random()*2.0,
+          });
+        }
+      }
+      pourParticles.forEach(p=>{ p.y += p.vy; p.vy += 0.22; p.x += p.vx; });
+      pourParticles = pourParticles.filter(p=> p.y < (pourCanvas.height/2) + 4);
+      drawPourBowl(pourAmount/100);
+      pourRaf = requestAnimationFrame(loop);
+    }
+    if(pourRaf) cancelAnimationFrame(pourRaf);
+    pourRaf = requestAnimationFrame(loop);
+  }
+
+  function drawPourBowl(fill){
+    const W=pourCanvas.width, H=pourCanvas.height, cx=W/2, cy=H/2, r=150;
+    pourCtx.clearRect(0,0,W,H);
+    let clayG = pourCtx.createRadialGradient(cx,cy,r*0.2,cx,cy,r+20);
+    clayG.addColorStop(0,'#FFFFFF'); clayG.addColorStop(0.8,'#F5F3F3'); clayG.addColorStop(1,'#E6E2D8');
+    pourCtx.fillStyle = clayG;
+    pourCtx.beginPath(); pourCtx.arc(cx,cy,r+20,0,Math.PI*2); pourCtx.fill();
+    const mix = matchaLiquidColor(fill);
+    pourCtx.fillStyle = `rgb(${mix[0]},${mix[1]},${mix[2]})`;
+    pourCtx.beginPath(); pourCtx.arc(cx,cy,r,0,Math.PI*2); pourCtx.fill();
+    
+    pourCtx.fillStyle = 'rgba(45, 59, 38, 0.85)';
+    pourParticles.forEach(p=>{
+      pourCtx.beginPath(); pourCtx.arc(p.x, p.y, p.size, 0, Math.PI*2); pourCtx.fill();
+    });
+
+    pourCtx.strokeStyle = '#c2c8c1'; pourCtx.lineWidth=1;
+    pourCtx.beginPath(); pourCtx.arc(cx,cy,r+18,0,Math.PI*2); pourCtx.stroke();
+  }
+
+  let wCanvas, wCtx, wCX, wCY, wBowlR=210, wRimTol=34;
+  let wState='idle', wPressing=false, wLast=null, wActiveMs=0, wSpeedSamples=[];
+  let wLastVel=null, wReversalCount=0, wRecentReversalTimes=[], wReversalPoints=[];
+  let wSplashCount=0, wFoam=0, wFoamFine=0, wFineStreak=0, wFoamPatches=[], wSplashMarks=[], wCoverageSectors=null;
+  let wPressureSamples=[], wCurrentSpeedVisual=0, wWhiskAngleVisual=0, wRafId=null;
+
+  function initWhiskStage(){
+    wCanvas = document.getElementById('whiskCanvas');
+    wCtx = wCanvas.getContext('2d');
+    wCX = wCanvas.width/2; wCY = wCanvas.height/2;
+    wCanvas.addEventListener('pointerdown', wOnDown);
+    wCanvas.addEventListener('pointermove', wOnMove);
+    window.addEventListener('pointerup', wOnUp);
+    wCanvas.addEventListener('touchstart', wOnDown, {passive:false});
+    wCanvas.addEventListener('touchmove', wOnMove, {passive:false});
+    window.addEventListener('touchend', wOnUp);
+    document.getElementById('whiskFinishBtn').addEventListener('click', wFinish);
+    document.getElementById('whiskContinueBtn').addEventListener('click', triggerCinematicTransition);
+    if(wRafId) cancelAnimationFrame(wRafId);
+    (function loop(){ wDrawBowl(); wRafId = requestAnimationFrame(loop); })();
+  }
+
+  function resetWhiskStage(){
+    wPressing=false; wLast=null; wActiveMs=0; wSpeedSamples=[]; wLastVel=null;
+    wReversalCount=0; wRecentReversalTimes=[]; wSplashCount=0; wFoam=0; wFoamFine=0; wFineStreak=0;
+    wFoamPatches=[]; wPressureSamples=[]; wSplashMarks=[]; wReversalPoints=[];
+    wCoverageSectors = new Array(10).fill(0);
+    wCurrentSpeedVisual=0; wWhiskAngleVisual=0; wState='idle';
+    document.getElementById('whiskFinishBtn').disabled = true;
+    document.getElementById('whiskHint').textContent = '按住茶碗，揮灑你的節奏吧';
+    document.getElementById('whiskControls').style.display = 'block';
+    document.getElementById('whiskBreakdown').style.display = 'none';
+    document.getElementById('whiskContinueRow').style.display = 'none';
+  }
+
+  function wPointerPos(e){
+    const rect = wCanvas.getBoundingClientRect();
+    const scaleX = wCanvas.width/rect.width, scaleY = wCanvas.height/rect.height;
+    const p = (e.touches && e.touches[0]) ? e.touches[0] : e;
+    return { x:(p.clientX-rect.left)*scaleX, y:(p.clientY-rect.top)*scaleY };
+  }
+
+  function wOnDown(e){
+    e.preventDefault();
+    if(wState==='done') return;
+    if(wState==='idle'){
+      wState='whisking';
+      document.getElementById('whiskHint').textContent='保持節奏，讓泡沫堆成一片雲海';
+      document.getElementById('whiskFinishBtn').disabled=false;
+    }
+    wPressing=true;
+    const p = wPointerPos(e);
+    wLast = {x:p.x,y:p.y,t:performance.now()};
+    wLastVel = null;
+  }
+
+  function wOnMove(e){
+    if(!wPressing || wState!=='whisking') return;
+    e.preventDefault();
+    const p = wPointerPos(e);
+    const now = performance.now();
+    const dt = now - wLast.t;
+    if(dt<=0) return;
+    const dx=p.x-wLast.x, dy=p.y-wLast.y;
+    const dist = Math.hypot(dx,dy);
+    const speed = dist/(dt/1000);
+    wActiveMs += dt;
+    if(speed>0){ wSpeedSamples.push(Math.min(speed,6000)); }
+    wCurrentSpeedVisual = speed;
+    const pressureNow = (typeof e.pressure==='number' && e.pressure>0) ? e.pressure : 0.5;
+    wPressureSamples.push(pressureNow);
+    wWhiskAngleVisual = Math.atan2(dy,dx);
+    const minSeg=6;
+    if(dist>minSeg){
+      if(wLastVel){
+        const dot = (dx*wLastVel.x + dy*wLastVel.y)/(dist*wLastVel.len);
+        if(dot < -0.15){
+          wReversalCount++; wRecentReversalTimes.push(now);
+          wReversalPoints.push({x: p.x - wCX, y: p.y - wCY});
+          if(wReversalPoints.length>400) wReversalPoints.shift();
+        }
+      }
+      wLastVel = {x:dx,y:dy,len:dist};
+    }
+    while(wRecentReversalTimes.length && now-wRecentReversalTimes[0]>1000){ wRecentReversalTimes.shift(); }
+    const zigRate = wRecentReversalTimes.length;
+    const r = Math.hypot(p.x-wCX, p.y-wCY);
+    if(r > wBowlR+wRimTol){
+      wSplashCount++;
+      if(Math.random()<0.6 && wSplashMarks.length<140){
+        const dropCount = 1 + Math.floor(Math.random()*2);
+        for(let i=0;i<dropCount;i++){
+          wSplashMarks.push({
+            x: p.x + (Math.random()-0.5)*26,
+            y: p.y + (Math.random()-0.5)*26,
+            r: 2.5 + Math.random()*4.5,
+            alpha: 0.55 + Math.random()*0.35,
+            tone: Math.random()
+          });
+        }
+      }
+    } else {
+      const speedFactor = Math.min(speed/800,1.4);
+      const zigFactor = 0.35 + Math.min(zigRate/4,1)*0.65;
+      const pressureFactor = 0.5 + Math.min(pressureNow,1)*0.5;
+      const skillNow = speedFactor*0.45 + zigFactor*0.4 + pressureFactor*0.15;
+      wFoam = Math.min(100, wFoam + skillNow*0.8);
+      // Fineness is now a genuinely progressive/tiered system, not a flat
+      // accumulator: it only builds while technique quality is actually good
+      // (skillNow past a threshold), and the RATE it builds at increases the
+      // longer that good technique is sustained (momentum) — someone who
+      // whisks well continuously gets noticeably finer foam per second than
+      // someone who's merely adequate. Slipping below the quality threshold
+      // breaks the streak quickly and lets fineness regress, so inconsistent
+      // whisking (good/bad/good/bad) can't coast to the same result as
+      // sustained good technique.
+      if(skillNow > 0.55){
+        wFineStreak = Math.min(260, wFineStreak+1);
+        const momentum = 1 + Math.min(1.4, wFineStreak*0.012);
+        wFoamFine = Math.min(100, wFoamFine + 0.062*momentum);
+      } else {
+        wFineStreak = Math.max(0, wFineStreak-3);
+        wFoamFine = Math.max(0, wFoamFine - 0.05);
+      }
+      // Track which angular slice of the bowl the whisk tip is currently in,
+      // so we can tell apart someone who works the whole bowl evenly from
+      // someone who just churns one corner — both can rack up the same raw
+      // foam "amount", but only the former is actually good technique.
+      if(wCoverageSectors && r>4){
+        const sectorIdx = Math.floor(((Math.atan2(p.y-wCY, p.x-wCX)+Math.PI)/(Math.PI*2))*wCoverageSectors.length) % wCoverageSectors.length;
+        wCoverageSectors[sectorIdx] += skillNow;
+      }
+      if(Math.random()<0.85){
+        const cv = wCoeffVar(wSpeedSamples);
+        const quality = Math.max(0, Math.min(1, zigFactor*0.6 + pressureFactor*0.4 - cv*0.3));
+        const fineFactor = wFoamFine/100;
+        const jitter = 30 + (1-quality)*45;
+        const size = Math.max(3, (12-quality*5) + Math.random()*(6-quality*4) - fineFactor*5);
+        wFoamPatches.push({
+          x:p.x+(Math.random()-0.5)*jitter, y:p.y+(Math.random()-0.5)*jitter,
+          r:Math.max(2.5,size), alpha:0.4+Math.random()*0.3, tone:0.5+(Math.random()-0.5)*(1-quality*1.3)
+        });
+        if(wFoamPatches.length>800) wFoamPatches.shift();
+      }
+    }
+    wLast = {x:p.x,y:p.y,t:now};
+    if(wActiveMs>65000) wFinish();
+  }
+
+  function wOnUp(){ wPressing=false; wCurrentSpeedVisual=0; }
+  function wCoeffVar(arr){
+    if(arr.length<4) return 0;
+    const mean = arr.reduce((a,b)=>a+b,0)/arr.length;
+    if(mean===0) return 0;
+    const variance = arr.reduce((a,b)=>a+(b-mean)*(b-mean),0)/arr.length;
+    return Math.sqrt(variance)/mean;
+  }
+
+  // Judges whether the whisking motion actually traced a disciplined
+  // alternating sweep (the traditional "W"/"M" chasen pattern) rather than,
+  // say, circling in one direction or jittering in place. Looks at the
+  // sequence of reversal points recorded during the stroke:
+  //   1. alternation  — do the x-offsets from bowl-center actually flip
+  //      sign left/right/left/right (a real zigzag), rather than staying on
+  //      one side (a circle/arc) or bouncing randomly?
+  //   2. amplitude    — is the sweep wide enough to count as a deliberate W/M
+  //      motion, not a tiny back-and-forth wiggle?
+  //   3. consistency  — is that amplitude roughly even stroke-to-stroke,
+  //      the hallmark of a controlled, memorized pattern vs. flailing?
+  function wPatternScore(points, bowlR){
+    if(points.length < 5) return 35; // not enough motion sampled to judge shape
+    const xs = points.map(p=>p.x);
+    let alternations = 0;
+    for(let i=1;i<xs.length;i++){
+      if(Math.sign(xs[i]) !== 0 && Math.sign(xs[i-1]) !== 0 && Math.sign(xs[i]) !== Math.sign(xs[i-1])) alternations++;
+    }
+    const alternationRatio = alternations/(xs.length-1);
+    const amplitudes = xs.map(x=>Math.abs(x));
+    const meanAmp = amplitudes.reduce((a,b)=>a+b,0)/amplitudes.length;
+    const amplitudeRatio = Math.min(1, meanAmp/(bowlR*0.45));
+    let cv = 0;
+    if(meanAmp>0.5){
+      const variance = amplitudes.reduce((a,b)=>a+(b-meanAmp)*(b-meanAmp),0)/amplitudes.length;
+      cv = Math.sqrt(variance)/meanAmp;
+    }
+    const consistencyRatio = Math.max(0, 1 - Math.min(1, cv));
+    const score = alternationRatio*55 + amplitudeRatio*25 + consistencyRatio*20;
+    return Math.round(Math.max(0, Math.min(100, score)));
+  }
+
+  function wEvennessScore(sectors){
+    if(!sectors) return 50;
+    const total = sectors.reduce((a,b)=>a+b,0);
+    if(total < 8) return 30; // too little coverage recorded to judge fairly
+    const mean = total/sectors.length;
+    const variance = sectors.reduce((a,b)=>a+(b-mean)*(b-mean),0)/sectors.length;
+    const cv = mean>0 ? Math.sqrt(variance)/mean : 1;
+    // also penalize if whole chunks of the bowl were never touched at all
+    const untouchedRatio = sectors.filter(v=>v < mean*0.15).length/sectors.length;
+    const score = 100*(1-Math.min(1,cv)) * (1 - untouchedRatio*0.6);
+    return Math.round(Math.max(0, Math.min(100, score)));
+  }
+
+  function wFinish(){
+    if(wState!=='whisking') return;
+    wState='done'; wPressing=false;
+    document.getElementById('whiskFinishBtn').disabled=true;
+    document.getElementById('whiskControls').style.display='none';
+    const avgSpeed = wSpeedSamples.length ? wSpeedSamples.reduce((a,b)=>a+b,0)/wSpeedSamples.length : 0;
+    const cv = wCoeffVar(wSpeedSamples);
+    const reversalRate = wActiveMs>0 ? wReversalCount/(wActiveMs/1000) : 0;
+    const avgPressure = wPressureSamples.length ? wPressureSamples.reduce((a,b)=>a+b,0)/wPressureSamples.length : 0.5;
+    const timeScore = wTimeScore(wActiveMs, IDEAL.timeMs);
+    const speedScore = peakedCurve(avgSpeed, IDEAL.speed);
+    const reversalTechScore = peakedCurve(reversalRate, IDEAL.reversalRate);
+    const evennessScore = wEvennessScore(wCoverageSectors);
+    // "點茶技法" now reflects both the classic W/M reversal rhythm AND whether
+    // the whisk actually worked the whole bowl evenly — churning one spot
+    // fast used to score identically to properly covering the bowl, which is
+    // exactly the "not enough discrimination" gap being closed here.
+    const techniqueScore = Math.round(reversalTechScore*0.6 + evennessScore*0.4);
+    // Consistency used to be scoreCurve(cv,[0,maxCV]) — i.e. ANY cv from
+    // dead-steady (0) up to the max-allowed threshold scored a flat 100.
+    // That's backwards for a metric where lower is unambiguously better: it
+    // gave zero credit for actually being more consistent. Replaced with a
+    // straight monotonic scale, so steadier whisking always scores higher.
+    const consistencyScore = Math.round(Math.max(0, Math.min(100, 100 - (cv/IDEAL.maxCV)*100)));
+    // Splash penalty as exponential decay instead of a hard linear -5/splash
+    // capped at 15: the first couple of splashes now cost more (harsher for
+    // sloppy control) while it still can't hit a hard floor as fast.
+    const controlScore = Math.round(Math.max(8, 100*Math.pow(0.90, wSplashCount)));
+    const pressureScore = peakedCurve(avgPressure, IDEAL.pressure);
+    const foamScore = Math.round(Math.max(0, Math.min(100, wFoam*0.5 + wFoamFine*0.5)));
+    const patternScore = wPatternScore(wReversalPoints, wBowlR);
+    const rawOverall = timeScore*0.05 + speedScore*0.12 + techniqueScore*0.20 + consistencyScore*0.13 + controlScore*0.13 + pressureScore*0.05 + foamScore*0.17 + patternScore*0.15;
+    const overall = rawOverall>=65 ? Math.round(rawOverall) : Math.round(65*Math.pow(Math.max(0,rawOverall)/65, 0.7));
+    state.whiskOverall = overall;
+    state.whiskScore = Math.round(overall/100 * MAX.whisk);
+    state.whiskBreakdownData = {timeScore,speedScore,techniqueScore,evennessScore,consistencyScore,controlScore,pressureScore,foamScore,patternScore,activeMs:wActiveMs,avgSpeed,cv,reversalRate,avgPressure,splashCount:wSplashCount};
+    wRenderBreakdown();
+    document.getElementById('whiskContinueRow').style.display='flex';
+  }
+
+  function wRenderBreakdown(){
+    const s = state.whiskBreakdownData;
+    const rows = [
+      {label:'泡沫品質', note: s.foamScore>=80?'一片細緻雲海，色澤均勻迷人':(s.foamScore>=45?'泡沫初具雛形，還能再翻湧一些':'泡沫有點害羞，力道可以再放開一點'), val:s.foamScore},
+      {label:'點茶技法', note: s.reversalRate<IDEAL.reversalRate[0]?'節奏還不夠俐落，多點律動感吧':(s.reversalRate>IDEAL.reversalRate[1]?'手速有點衝過頭了':'節奏俐落，標準的W字技法'), val:s.techniqueScore},
+      {label:'掌控力', note: s.splashCount>0?`過程中茶湯調皮地濺出了 ${s.splashCount} 次`:'手法穩健，滴茶不漏', val:s.controlScore},
+    ];
+    const bd = document.getElementById('whiskBreakdown');
+    bd.style.display='block';
+    bd.innerHTML = rows.map(r=>`
+      <div class="space-y-3">
+        <div class="flex justify-between items-end">
+          <span class="text-sm font-bold text-matcha-deep tracking-widest">${r.label}</span>
+          <span class="text-[12px] text-on-surface-variant font-mono">${r.val}%</span>
+        </div>
+        <div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+          <div class="h-full bg-matcha-deep transition-all duration-1500 ease-out" style="width:${r.val}%"></div>
+        </div>
+        <div class="text-[11px] text-on-surface-variant italic opacity-80">${r.note}</div>
+      </div>
+    `).join('');
+  }
+
+  function wDrawBowl(){
+    const W=wCanvas.width, H=wCanvas.height;
+    wCtx.clearRect(0,0,W,H);
+    let clayG = wCtx.createRadialGradient(wCX,wCY,wBowlR*0.15,wCX,wCY,wBowlR+22);
+    clayG.addColorStop(0,'#FFFFFF'); clayG.addColorStop(0.75,'#F5F3F3'); clayG.addColorStop(1,'#E6E2D8');
+    wCtx.fillStyle=clayG; wCtx.beginPath(); wCtx.arc(wCX,wCY,wBowlR+22,0,Math.PI*2); wCtx.fill();
+    const baseMix = matchaLiquidColor((state.pourAmount||50)/100);
+    const baseMixDeep = matchaLiquidColor(Math.min(1,(state.pourAmount||50)/100 + 0.15));
+    let liquidG = wCtx.createRadialGradient(wCX,wCY,10,wCX,wCY,wBowlR);
+    liquidG.addColorStop(0,`rgb(${baseMix[0]},${baseMix[1]},${baseMix[2]})`);
+    liquidG.addColorStop(1,`rgb(${baseMixDeep[0]},${baseMixDeep[1]},${baseMixDeep[2]})`);
+    wCtx.fillStyle=liquidG; wCtx.beginPath(); wCtx.arc(wCX,wCY,wBowlR,0,Math.PI*2); wCtx.fill();
+    wCtx.save();
+    wCtx.beginPath(); wCtx.arc(wCX,wCY,wBowlR-2,0,Math.PI*2); wCtx.clip();
+    for(const p of wFoamPatches){
+      const tone=p.tone;
+      const color = tone<0.4?'#B9D488':(tone<0.75?'#CFE3A5':'#E7F1C5');
+      wCtx.globalAlpha = p.alpha*Math.min(1,wFoam/35);
+      wCtx.fillStyle=color; wCtx.beginPath(); wCtx.arc(p.x,p.y,p.r,0,Math.PI*2); wCtx.fill();
+    }
+    wCtx.restore();
+    wCtx.globalAlpha=1;
+    wCtx.strokeStyle='#c2c8c1'; wCtx.lineWidth=1;
+    wCtx.beginPath(); wCtx.arc(wCX,wCY,wBowlR+20,0,Math.PI*2); wCtx.stroke();
+    if(wSplashMarks.length){
+      const baseMixSplash = matchaLiquidColor((state.pourAmount||50)/100);
+      wCtx.save();
+      for(const m of wSplashMarks){
+        const shade = m.tone<0.4 ? 0.7 : (m.tone<0.75 ? 1 : 1.25);
+        const cr = Math.min(255, Math.round(baseMixSplash[0]*shade));
+        const cg = Math.min(255, Math.round(baseMixSplash[1]*shade));
+        const cb = Math.min(255, Math.round(baseMixSplash[2]*shade));
+        wCtx.globalAlpha = m.alpha;
+        wCtx.fillStyle = `rgb(${cr},${cg},${cb})`;
+        wCtx.beginPath(); wCtx.arc(m.x, m.y, m.r, 0, Math.PI*2); wCtx.fill();
+      }
+      wCtx.restore();
+      wCtx.globalAlpha=1;
+    }
+    if(wPressing && wLast){ wDrawChasen(wLast.x, wLast.y, wWhiskAngleVisual, wCurrentSpeedVisual); }
+    else if(wState!=='done'){ wDrawChasen(wCX+wBowlR*0.55, wCY+wBowlR*0.55, -Math.PI*0.75, 0); }
+  }
+
+  function wDrawChasen(x,y,travelAngle,speedNow){
+    const flex = Math.min(speedNow/850,1);
+    const tineCount=32, innerR=10, outerR=38;
+    wCtx.save(); wCtx.translate(x,y); wCtx.lineCap='round';
+    for(let i=0;i<tineCount;i++){
+      const a=(i/tineCount)*Math.PI*2;
+      const sway = Math.sin(performance.now()*0.01 + i*1.9)*flex*5;
+      const trail = flex*10;
+      const baseX=Math.cos(a)*innerR, baseY=Math.sin(a)*innerR;
+      const tipX=Math.cos(a)*outerR + Math.cos(travelAngle+Math.PI)*trail + sway;
+      const tipY=Math.sin(a)*outerR + Math.sin(travelAngle+Math.PI)*trail + sway;
+      const ctrlX=Math.cos(a)*outerR*0.5, ctrlY=Math.sin(a)*outerR*0.5;
+      wCtx.strokeStyle = 'rgba(115, 92, 0, 0.55)';
+      wCtx.lineWidth=1.5;
+      wCtx.beginPath(); wCtx.moveTo(baseX,baseY); wCtx.quadraticCurveTo(ctrlX,ctrlY,tipX,tipY); wCtx.stroke();
+    }
+    wCtx.fillStyle='#C5A059'; wCtx.beginPath(); wCtx.arc(0,0,11,0,Math.PI*2); wCtx.fill();
+    wCtx.restore();
+  }
+
+  const CONTAINER_INFO = {
+    '極上薄茶': {icon:'bowl', name:'傳統茶碗'},
+    '雲朵拿鐵': {icon:'mug', name:'陶瓷馬克杯'},
+    '玄琥之啡': {icon:'cup', name:'陶瓷咖啡杯'},
+    '青檸沁抹茶': {icon:'goblet', name:'高腳玻璃杯'},
+    '椰風抹茶': {icon:'tallglass', name:'高身玻璃杯'},
+    '柚見翠波': {icon:'goblet', name:'高腳玻璃杯'},
+  };
+
+  // Plain inline SVG icons for the container row — deliberately NOT using the
+  // Material Symbols web font here: that font's icon glyphs only show up via
+  // ligature text substitution (e.g. the literal text "local_bar" becomes a
+  // glyph), which silently fails whenever the Google Fonts stylesheet can't
+  // load (blocked network, CORS, offline preview, etc.) and falls back to
+  // showing the raw ligature text instead. Inline SVG always renders.
+  const CONTAINER_ICON_SVG = {
+    bowl: '<path d="M3 11h18a9 8 0 0 1-9 8 9 8 0 0 1-9-8Z"/><path d="M7 11c.5-2 1.5-3.5 5-3.5s4.5 1.5 5 3.5"/>',
+    mug: '<path d="M5 6h11v9a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V6Z"/><path d="M16 8h1.5a2.5 2.5 0 0 1 0 5H16"/>',
+    cup: '<path d="M4 6h13v7a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V6Z"/><path d="M17 8h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M3 20h15"/>',
+    goblet: '<path d="M6 4h12l-1.2 6.5a4.8 4.8 0 0 1-9.6 0Z"/><path d="M12 12.5V19"/><path d="M8 20h8"/>',
+    tallglass: '<path d="M7 3h10l-1 16.5a1.5 1.5 0 0 1-1.5 1.5h-5a1.5 1.5 0 0 1-1.5-1.5Z"/>',
+  };
+  function containerIconSvg(type){
+    const d = CONTAINER_ICON_SVG[type] || CONTAINER_ICON_SVG.cup;
+    return `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;">${d}</svg>`;
+  }
+
+  function triggerCinematicTransition(){
+    const overlay = document.getElementById('cinematicOverlay');
+    const canvas = document.getElementById('pourOutCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const prevStageEl = document.querySelector('.stage.active');
+    if(prevStageEl){
+      prevStageEl.style.visibility = 'hidden';
+      prevStageEl.style.pointerEvents = 'none';
+    }
+
+    canvas.width = window.innerWidth * window.devicePixelRatio;
+    canvas.height = window.innerHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    
+    overlay.classList.add('active');
+    document.body.classList.add('pour-lock');
+    
+    const colorRGB = matchaLiquidColor((state.pourAmount||50)/100);
+    const liquidColor = `rgb(${colorRGB[0]},${colorRGB[1]},${colorRGB[2]})`;
+    
+    let startTime = null;
+    const duration = 3800;
+
+    // Size the cup and vertically center the cup+caption block together as one unit,
+    // with a clear gap between the cup and the caption text below it.
+    const captionEl = document.getElementById('pourCaption');
+    const vw0 = window.innerWidth;
+    const vh0 = window.innerHeight;
+
+    // Fixed cup size per breakpoint (edit these to resize the cup for each tier).
+    // Each entry is [minViewportWidth, scaleMultiplier]; base cup size is 140x180 at scale 1.
+    const CUP_SIZE_BREAKPOINTS = [
+      { minWidth: 1024, scale: 1.15 }, // desktop
+      { minWidth: 768,  scale: 1.0  }, // tablet
+      { minWidth: 480,  scale: 0.85 }, // large phone
+      { minWidth: 0,    scale: 0.72 }  // small phone
+    ];
+    const scale = (CUP_SIZE_BREAKPOINTS.find(bp => vw0 >= bp.minWidth) || CUP_SIZE_BREAKPOINTS[CUP_SIZE_BREAKPOINTS.length - 1]).scale;
+    const cupWidth = 140 * scale;
+    const cupHeight = 180 * scale;
+    const cupTopSpan = cupHeight * 0.6;
+    const cupBottomSpan = cupHeight;
+    const gap = Math.max(32, vh0 * 0.05);
+    const captionHeight = captionEl.offsetHeight || 90;
+    const totalBlockHeight = cupTopSpan + cupBottomSpan + gap + captionHeight;
+    const blockTop = Math.max(24, vh0 * 0.6 - totalBlockHeight / 2);
+
+    const centerX = vw0 / 2;
+    const centerY = blockTop + cupTopSpan;
+    captionEl.style.top = (blockTop + cupTopSpan + cupBottomSpan + gap) + 'px';
+
+    function animate(now){
+      if(!startTime) startTime = now;
+      const elapsed = now - startTime;
+      const t = Math.min(1, elapsed / duration);
+      
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      ctx.clearRect(0, 0, vw, vh);
+
+      ctx.beginPath();
+      ctx.ellipse(centerX, centerY + cupHeight * 0.65, cupWidth * 0.8, 30 * scale, 0, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,0,0,0.04)';
+      ctx.fill();
+
+      if(t < 0.96) {
+        ctx.beginPath();
+        ctx.moveTo(centerX, -100);
+        ctx.lineTo(centerX, centerY + cupHeight * 0.5 - (t * cupHeight * 1.1));
+        ctx.lineWidth = (28 * scale) * (1 - t * 0.4);
+        ctx.strokeStyle = liquidColor;
+        ctx.lineCap = 'round';
+        ctx.setLineDash([30 * scale, 15 * scale]);
+        ctx.lineDashOffset = -elapsed * 0.6;
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.shadowBlur = 15 * scale;
+        ctx.shadowColor = liquidColor;
+      } else {
+        ctx.shadowBlur = 0;
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(centerX - cupWidth, centerY - cupHeight * 0.6);
+      ctx.bezierCurveTo(centerX - cupWidth, centerY + cupHeight, centerX + cupWidth, centerY + cupHeight, centerX + cupWidth, centerY - cupHeight * 0.6);
+      ctx.lineWidth = 10 * scale;
+      ctx.strokeStyle = '#ffffff';
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,255,255,0.45)';
+      ctx.fill();
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(centerX - cupWidth + (5*scale), centerY - cupHeight * 0.6);
+      ctx.bezierCurveTo(centerX - cupWidth + (5*scale), centerY + cupHeight - (5*scale), centerX + cupWidth - (5*scale), centerY + cupHeight - (5*scale), centerX + cupWidth - (5*scale), centerY - cupHeight * 0.6);
+      ctx.clip();
+      
+      const maxFill = cupHeight * 1.3;
+      const fillHeight = maxFill * t;
+      ctx.fillStyle = liquidColor;
+      ctx.fillRect(centerX - cupWidth * 1.5, (centerY + cupHeight * 0.9) - fillHeight, cupWidth * 3, fillHeight);
+      
+      if (t > 0.05) {
+        ctx.beginPath();
+        ctx.ellipse(centerX, (centerY + cupHeight * 0.9) - fillHeight, cupWidth * 0.95, 12 * scale, 0, 0, Math.PI * 2);
+        ctx.fillStyle = liquidColor;
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+        ctx.lineWidth = 3 * scale;
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      if(t < 1){
+        requestAnimationFrame(animate);
+      } else {
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          document.body.classList.remove('pour-lock');
+          if(prevStageEl){
+            prevStageEl.style.visibility = '';
+            prevStageEl.style.pointerEvents = '';
+          }
+          showResults();
+        }, 1200);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // We deliberately over-allocate a little height when capturing the card (see
+  // renderResultImage below) as a safety margin against font-fallback height
+  // differences — better to risk a sliver of extra white than clip content.
+  // This trims that safety margin back off afterwards: it scans the actual
+  // rendered pixels top-to-bottom and bottom-to-top for the first row that
+  // isn't (near-)pure white, and crops tightly to that real content, so the
+  // final image never shows an unintended white band above/below the card.
+  function trimVerticalWhitespace(dataUrl){
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        try {
+          const w = img.naturalWidth, h = img.naturalHeight;
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          const data = ctx.getImageData(0, 0, w, h).data;
+          const isRowBlank = (y) => {
+            const rowStart = y*w*4;
+            for(let x=0; x<w; x++){
+              const idx = rowStart + x*4;
+              const a = data[idx+3];
+              if(a > 10 && (data[idx] < 240 || data[idx+1] < 240 || data[idx+2] < 240)) return false;
+            }
+            return true;
+          };
+          let top = 0;
+          while(top < h && isRowBlank(top)) top++;
+          let bottom = h - 1;
+          while(bottom > top && isRowBlank(bottom)) bottom--;
+          const cropH = bottom - top + 1;
+          if(top===0 && cropH>=h-1){ resolve(dataUrl); return; }
+          const out = document.createElement('canvas');
+          out.width = w; out.height = Math.max(1, cropH);
+          out.getContext('2d').drawImage(canvas, 0, top, w, cropH, 0, 0, w, cropH);
+          resolve(out.toDataURL('image/png'));
+        } catch(e){ console.warn('Whitespace trim skipped (falling back to untrimmed image):', e); resolve(dataUrl); }
+      };
+      img.onerror = () => resolve(dataUrl);
+      img.src = dataUrl;
+    });
+  }
+
+  function showResults(){
+    goToStage('results');
+    const total = Math.round(state.matchaScore + state.pourScore + state.whiskScore);
+    document.getElementById('totalNum').textContent = total;
+    let verdict, verdictZh, verdictEn;
+    if(total>=95){ verdictZh='抹茶仙人'; verdictEn='Matcha Sage'; }
+    else if(total>=88){ verdictZh='抹茶大師'; verdictEn='Matcha Master'; }
+    else if(total>=80){ verdictZh='點茶名匠'; verdictEn='Whisk Virtuoso'; }
+    else if(total>=72){ verdictZh='茶道達人'; verdictEn='Tea Whisperer'; }
+    else if(total>=64){ verdictZh='靈巧見習'; verdictEn='Steady Hands'; }
+    else if(total>=56){ verdictZh='修煉生'; verdictEn='Rising Apprentice'; }
+    else if(total>=48){ verdictZh='半吊子茶人'; verdictEn='Half-Baked Brewer'; }
+    else if(total>=38){ verdictZh='手忙腳亂の新手'; verdictEn='Sprinkle & Splash Beginner'; }
+    else if(total>=26){ verdictZh='迷途茶羔羊'; verdictEn='Lost in the Froth'; }
+    else { verdictZh='抹茶界の破壞王'; verdictEn='Matcha Catastrophe'; }
+    verdict = `${verdictZh} | ${verdictEn}`;
+    document.getElementById('totalVerdict').innerHTML = `<span>${verdictZh}</span><span class="text-xs tracking-[0.15em] normal-case opacity-70">${verdictEn}</span>`;
+    
+    const container = CONTAINER_INFO[state.drink] || {name: '傳統茶碗'};
+    const matchaTagsHtml = (state.matchaTraits && state.matchaTraits.length)
+      ? state.matchaTraits.map(t=>`#${t}`).join('　')
+      : '';
+    const rows = [
+      {label:'抹茶選擇', sub: matchaTagsHtml, pts: state.matchaScore, max: MAX.matcha},
+      {label:'粉量掌控', sub: state.pourAmount<IDEAL.powder[0] ? '茶味有點害羞，藏太深了' : (state.pourAmount>IDEAL.powder[1] ? '茶勁太衝，喝一口皺眉頭' : '濃淡恰到好處，正中紅心'), pts: state.pourScore, max: MAX.pour},
+      {label:'點茶技法', sub: `技術評分 ${state.whiskOverall}/100`, pts: state.whiskScore, max: MAX.whisk, subNowrap: true},
+    ];
+    document.getElementById('resultsBreakdown').innerHTML = rows.map(r=>`
+      <div class="flex justify-between items-center">
+        <div>
+          <div class="text-sm font-bold tracking-widest">${r.label}</div>
+          <div class="text-[11px] text-on-surface-variant italic opacity-75"${r.subNowrap ? ' style="white-space:nowrap;"' : ''}>${r.sub}</div>
+        </div>
+        <div class="text-sm font-mono text-gold-leaf font-bold">${r.pts} / ${r.max}</div>
+      </div>
+    `).join('') + `
+      <div class="flex justify-between items-center pt-4 border-t border-dashed border-outline-variant">
+        <div class="text-sm font-bold tracking-widest">盛裝茶器</div>
+        <div class="text-sm text-matcha-deep font-medium flex items-center gap-1">${containerIconSvg(container.icon)}${container.name}</div>
+      </div>
+    `;
+    document.getElementById('certDrink').textContent = `${state.drink} · ${container.name}`;
+    document.getElementById('certDetail').textContent = `最終成績：${total} · ${new Date().toLocaleDateString('zh-TW')} `;
+
+    const shareBtn = document.getElementById('shareBtn');
+    if (shareBtn) {
+      const shareText = `我在《今天喝什抹》完成了抹茶試煉！獲得了「${verdict}」評價，總分 ${total}。快來挑戰你的茶道修為！`;
+      const shareUrl = window.location.href;
+      const fileName = `今天喝什抹_${verdict}_${total}分.png`;
+
+      let cachedDataUrl = null;
+
+      async function renderResultImage() {
+        const card = document.getElementById('masteryCard');
+
+        // Make sure webfonts are actually loaded before drawing, otherwise the
+        // captured image can come out with missing/garbled glyphs.
+        if (document.fonts && document.fonts.ready) {
+          try { await document.fonts.ready; } catch (e) { /* ignore */ }
+        }
+
+        const pixelRatio = Math.min(3, (window.devicePixelRatio || 1) * 2);
+
+        // The card has a soft drop-shadow (box-shadow) for on-screen elevation.
+        // Because it's offset downward (y: 20px) it bleeds a faint gray band
+        // below the card's actual border, which used to get mistaken for
+        // "content" by the whitespace trim below. Disable it just for the
+        // capture; restore after.
+        const originalShadow = card.style.boxShadow;
+        card.style.boxShadow = 'none';
+
+        // Try to actually embed the real webfonts as base64 data (so the export
+        // uses the exact same font metrics as what we measured live — no
+        // mismatch, so no risk of the bottom getting clipped or a leftover gap
+        // needing to be trimmed). This requires fetching the Google Fonts CSS +
+        // font files, which fails/hangs in some network environments — so it's
+        // wrapped in a short timeout and a try/catch, and we fall back to
+        // skipping font embedding entirely (accepting a fallback system font in
+        // the export) rather than let a slow/failed fetch block sharing.
+        let fontEmbedCSS = null;
+        try {
+          const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('font embed timeout')), 4000));
+          fontEmbedCSS = await Promise.race([htmlToImage.getFontEmbedCSS(card), timeout]);
+        } catch (e) {
+          fontEmbedCSS = null;
+        }
+
+        const rect = card.getBoundingClientRect();
+        const width = Math.ceil(rect.width);
+        // Always add a small safety buffer to height, whether or not font
+        // embedding succeeded — even with matching fonts, small rounding or
+        // sub-pixel differences in how html-to-image lays out its detached
+        // clone can still shave a few px off the real content height. With
+        // zero margin that clips the bottom strip; the buffer plus
+        // trimVerticalWhitespace below removes any slack it leaves, so it's
+        // safe either way.
+        const height = Math.ceil(Math.max(rect.height, card.scrollHeight, card.offsetHeight)) + (fontEmbedCSS ? 16 : 32);
+
+        let dataUrl;
+        try {
+          dataUrl = await htmlToImage.toPng(card, {
+            pixelRatio,
+            width,
+            height,
+            backgroundColor: '#ffffff',
+            cacheBust: true,
+            skipFonts: !fontEmbedCSS,
+            ...(fontEmbedCSS ? { fontEmbedCSS } : {})
+          });
+        } finally {
+          card.style.boxShadow = originalShadow;
+        }
+
+        if (!dataUrl || dataUrl.length < 100 || dataUrl === 'data:,') {
+          throw new Error('html-to-image produced empty image data');
+        }
+
+        dataUrl = await trimVerticalWhitespace(dataUrl);
+
+        return dataUrl;
+      }
+
+      function openShareModal(imageUrl) {
+        const modal = document.getElementById('shareModal');
+        document.getElementById('shareImagePreview').src = imageUrl;
+        modal.classList.remove('hidden');
+      }
+
+      function closeShareModal() {
+        document.getElementById('shareModal').classList.add('hidden');
+      }
+
+      document.getElementById('closeShareModalBtn').onclick = closeShareModal;
+      document.getElementById('shareModal').addEventListener('click', (e) => {
+        if (e.target.id === 'shareModal') closeShareModal();
+      });
+
+      document.getElementById('downloadImageBtn').onclick = () => {
+        if (!cachedDataUrl) return;
+        const a = document.createElement('a');
+        a.href = cachedDataUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      };
+
+      document.getElementById('shareLinkBtn').onclick = async () => {
+        const btn = document.getElementById('shareLinkBtn');
+        const shareData = { title: '今天喝什抹', text: shareText, url: shareUrl };
+
+        const flashLabel = (msg) => {
+          // Feedback via the button label itself instead of alert(): alert()
+          // is silently blocked in some sandboxed/embedded preview contexts
+          // (iframes without allow-modals), which made this button look like
+          // it "did nothing" even when the copy itself actually succeeded.
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span class="material-symbols-outlined text-xl">check</span>${msg}`;
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        };
+
+        const copyLink = async () => {
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(shareUrl);
+            } else {
+              // Legacy fallback for contexts where the async Clipboard API isn't
+              // available (e.g. non-HTTPS/file:// pages, some embedded iframes).
+              const ta = document.createElement('textarea');
+              ta.value = shareUrl;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.focus();
+              ta.select();
+              const ok = document.execCommand('copy');
+              ta.remove();
+              if (!ok) throw new Error('execCommand copy failed');
+            }
+            flashLabel('已複製連結！');
+          } catch (clipErr) {
+            flashLabel('無法自動複製，請手動複製');
+          }
+        };
+
+        // Desktop and mobile want different things here: on mobile we want the
+        // system share bottom sheet (navigator.share); on desktop we want a
+        // plain "copied!" toast so people can paste it wherever they like.
+        // Feature-detecting navigator.share alone isn't enough — some desktop
+        // browsers (e.g. Windows Chrome/Edge) support it too, and calling it
+        // there pops the OS share dialog instead of copying, and gives no
+        // feedback at all if the user just closes it (looked like the button
+        // "did nothing"/"failed"). So branch on the input type instead.
+        const isMobile = window.matchMedia('(pointer: coarse)').matches
+          || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile && typeof navigator.share === 'function') {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (err) {
+            if (err && err.name === 'AbortError') return;
+            // fall through to clipboard copy below
+          }
+        }
+
+        await copyLink();
+      };
+
+      shareBtn.onclick = async () => {
+        const originalLabel = shareBtn.innerHTML;
+        shareBtn.disabled = true;
+        shareBtn.innerHTML = '<span class="material-symbols-outlined text-xl animate-spin">progress_activity</span> 產生成果圖中...';
+
+        try {
+          cachedDataUrl = await renderResultImage();
+
+          // Deliberately always show our own modal (with a plain <img>) rather
+          // than trying navigator.share({files:...}) first. That API varies a
+          // lot by browser/OS — some share sheets don't even offer a "save
+          // image" action, and it's easy for it to fail/no-op silently — and
+          // more importantly, without a real on-page <img> the browser has
+          // nothing for right-click "Save Image As" (desktop) or long-press
+          // "Save Image" (mobile) to act on. The modal's own buttons still let
+          // people use native sharing where it makes sense (via 分享連結).
+          openShareModal(cachedDataUrl);
+        } catch (err) {
+          console.error('Failed to render result image', err);
+          alert('產生成果圖失敗，你可以改用長按截圖分享成果，或使用下方分享連結。');
+        } finally {
+          shareBtn.disabled = false;
+          shareBtn.innerHTML = originalLabel;
+        }
+      };
+    }
+  }
+
+  function initGame(){
+    randomizeIdeals();
+    state.drink=null; state.matchaLabel=null; state.matchaTraits=null; state.matchaScore=0;
+    state.pourAmount=0; state.pourScore=0;
+    state.whiskOverall=0; state.whiskScore=0; state.whiskBreakdownData=null;
+    initDrinkStage();
+    initPourStage();
+    goToStage('drink');
+  }
+
+  function initDottedBorderStrips(){
+    document.querySelectorAll('.dotted-border-strip').forEach(strip => {
+      const frag = document.createDocumentFragment();
+      for (let i = 0; i < 70; i++) {
+        const sq = document.createElement('div');
+        sq.className = 'dbs-sq';
+        frag.appendChild(sq);
+      }
+      strip.appendChild(frag);
+    });
+  }
+
+  initWhiskStage();
+  initDottedBorderStrips();
+  document.getElementById('playAgainBtn').addEventListener('click', initGame);
+  document.getElementById('homeLogoBtn').addEventListener('click', initGame);
+
+  // The header is `position:fixed` so it always stays pinned at the very top
+  // regardless of scrolling or any ancestor's layout — but that also takes it
+  // out of normal document flow, so without compensation the page content
+  // underneath would start at y:0 and be hidden behind it. Push everything
+  // else down by exactly the header's real rendered height (measured, not
+  // guessed, so it stays correct if the header ever wraps to two lines on a
+  // very narrow screen or its content's size changes).
+  (function syncHeaderSpacing(){
+    const header = document.getElementById('mainHeader');
+    const apply = () => { document.body.style.paddingTop = header.offsetHeight + 'px'; };
+    apply();
+    window.addEventListener('resize', apply);
+    if (window.ResizeObserver) new ResizeObserver(apply).observe(header);
+  })();
+  initGame();
+})();
+</script>
+</body></html>
